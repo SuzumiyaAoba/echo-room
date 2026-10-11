@@ -1,0 +1,12 @@
+{
+  "name": "残響の灯台 — ECHO LOOM",
+  "short_name": "ECHO LOOM",
+  "description": "昨日のあなたと光を織る、ドット絵アクションローグライト。",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#0b141b",
+  "theme_color": "#0b141b",
+  "icons": [{"src":"./favicon.svg","sizes":"any","type":"image/svg+xml","purpose":"any"}]
+}

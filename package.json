@@ -1,0 +1,22 @@
+{
+  "name": "echo-loom",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build && node scripts/offline-build.js",
+    "preview": "vite preview --host 127.0.0.1",
+    "package:browser": "npm run build && node scripts/package-browser.js",
+    "serve:browser": "node scripts/serve-browser.js --root dist",
+    "test": "node --test tests/*.test.js",
+    "test:browser": "playwright test",
+    "format": "prettier --write src scripts tests index.html package.json vite.config.js playwright.config.js",
+    "format:check": "prettier --check src scripts tests index.html package.json vite.config.js playwright.config.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1",
+    "prettier": "3.6.2",
+    "vite": "7.1.11"
+  }
+}
