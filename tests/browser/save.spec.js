@@ -1,3 +1,4 @@
+import { artifacts as artifacts } from "./artifacts.js";
 import { test, expect } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 import {
@@ -9,7 +10,6 @@ import {
 import { createRun } from "../../src/game.js";
 import { CITY_MEMORIES } from "../../src/story.js";
 
-const artifacts = ".mdxr/20261007195700-echo-loom/assets";
 const stored = (page) =>
   page.evaluate((key) => JSON.parse(localStorage.getItem(key)), SAVE_KEY);
 const importedProfile = () => {

@@ -1,3 +1,5 @@
+import { developmentURL } from "./browser-url.js";
+import { observationPath } from "./observation-files.js";
 import { chromium } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 import assert from "node:assert/strict";
@@ -54,14 +56,14 @@ async function stop(kind) {
   const after = await read();
   assert.deepEqual(after, before);
   await writeFile(
-    `/tmp/echo-ability-${label}-${kind}.png`,
+    observationPath(`echo-ability-${label}-${kind}.png`),
     Buffer.from(before.png.split(",")[1], "base64"),
   );
   const { png, ...record } = before;
   return { milliseconds: 350, exact: true, ...record };
 }
 try {
-  await page.goto("http://127.0.0.1:5173/");
+  await page.goto(developmentURL);
   await page.getByRole("button", { name: "設定", exact: true }).click();
   await page.locator("#setting-flashes").uncheck();
   await page.locator("#setting-shake").uncheck();
@@ -98,7 +100,7 @@ try {
   );
   assert.deepEqual(errors, []);
   await writeFile(
-    `/tmp/echo-ability-${label}.json`,
+    observationPath(`echo-ability-${label}.json`),
     JSON.stringify(
       {
         scope:

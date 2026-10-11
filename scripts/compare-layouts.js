@@ -1,3 +1,4 @@
+import { observationPath } from "./observation-files.js";
 import { simulate, SIMULATION_STYLES } from "./simulate.js";
 import { simulate as previous } from "../tests/fixtures/layouts-v1/simulate.js";
 import { writeFile } from "node:fs/promises";
@@ -33,7 +34,7 @@ for (const weapon of ["needle", "scatter", "prism"])
         );
       }
 await writeFile(
-  "/tmp/echo-layouts-balance.json",
+  observationPath("echo-layouts-balance.json"),
   JSON.stringify(
     {
       scope:

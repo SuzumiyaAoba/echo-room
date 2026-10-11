@@ -1,10 +1,10 @@
+import { artifacts as assets } from "./artifacts.js";
 import { test, expect } from "@playwright/test";
 import { readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { freshProfile, SAVE_KEY, prepareImport } from "../../src/save.js";
 import { createRun } from "../../src/game.js";
 
-const assets = ".mdxr/20261007195700-echo-loom/assets";
 const sha = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const custom = {
   fire: "KeyF",
@@ -308,14 +308,10 @@ test("旧入力と標準・変更後の4,096条件を照合し、出口のキー
       { Renderer: OldRenderer },
     ] = await Promise.all([
       import("/src/input.js"),
-      import(
-        "/.mdxr/20261007195700-echo-loom/assets/keybindings-baseline-input.mjs"
-      ),
+      import("/tests/fixtures/reference/keybindings-baseline-input.mjs"),
       import("/src/game.js"),
       import("/src/render.js"),
-      import(
-        "/.mdxr/20261007195700-echo-loom/assets/pad-predecessor-render.mjs"
-      ),
+      import("/tests/fixtures/reference/pad-predecessor-render.mjs"),
     ]);
     const mapping = {
       up: ["KeyI", "ArrowUp"],
@@ -680,7 +676,7 @@ test("報酬の数字キーを次の航路へ持ち越さず、押し直した�
   // The actual reward hotkey and subsequent exit still use native key events.
   await page.evaluate(async () => {
     const { Input: Before } = await import(
-      "/.mdxr/20261007195700-echo-loom/assets/keybindings-controls-input-baseline.mjs"
+      "/tests/fixtures/reference/keybindings-controls-input-baseline.mjs"
     );
     window.__numericBeforeInput = new Before(
       document.createElement("canvas"),

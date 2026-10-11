@@ -1,14 +1,19 @@
+import { developmentURL } from "./browser-url.js";
+import {
+  observationDirectory,
+  observationInputPath,
+} from "./observation-files.js";
 import { chromium, firefox, webkit } from "@playwright/test";
 import assert from "node:assert/strict";
 import { readFile, writeFile } from "node:fs/promises";
 
-const destination = ".mdxr/20261007195700-echo-loom/assets";
+const destination = observationDirectory;
 const sources = Object.fromEntries(
   await Promise.all(
     ["before", "prototype"].map(async (variant) => [
       variant,
       await readFile(
-        `${destination}/renderer-presentation-${variant}.js`,
+        await observationInputPath(`renderer-presentation-${variant}.js`),
         "utf8",
       ),
     ]),
@@ -43,7 +48,7 @@ for (const [name, type] of Object.entries({ chromium, firefox, webkit })) {
         await page.route(`**/src/render.js?presentation-${variant}`, (route) =>
           route.fulfill({ contentType: "text/javascript", body }),
         );
-      await page.goto("http://127.0.0.1:5173/");
+      await page.goto(developmentURL);
       for (const stage of [-1, 0, 8, 16]) {
         const logical = await page.evaluate(async (stage) => {
           const { Renderer } = await import(

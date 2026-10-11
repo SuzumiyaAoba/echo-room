@@ -1,8 +1,9 @@
+import { fixturePath } from "./artifacts.js";
+import { artifacts as assets } from "./artifacts.js";
 import { test, expect } from "@playwright/test";
 import { readFile, writeFile } from "node:fs/promises";
 import { freshProfile, SAVE_KEY, exportProfile } from "../../src/save.js";
 
-const assets = ".mdxr/20261007195700-echo-loom/assets";
 const proof = (name, engine, value) =>
   writeFile(
     `${assets}/pad-${name}-${engine}.json`,
@@ -399,7 +400,7 @@ test("実戦の記録から四画面で分岐を読み、パッドで選んで�
   page.on("pageerror", (e) => errors.push(e.message));
   await install(page);
   const earned = JSON.parse(
-    await readFile(`${assets}/forks-earned-rest-entry.json`, "utf8"),
+    await readFile(fixturePath("forks-earned-rest-entry.json"), "utf8"),
   );
   const backup = `${assets}/pad-earned-${info.project.name}.json`;
   await writeFile(backup, exportProfile(earned));

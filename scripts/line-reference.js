@@ -5,11 +5,11 @@ export function legacyPixelLine(ctx, x0, y0, x1, y1, color, width = 1) {
   y0 = Math.round(y0);
   x1 = Math.round(x1);
   y1 = Math.round(y1);
-  let dx = Math.abs(x1 - x0),
+  const dx = Math.abs(x1 - x0),
     sx = x0 < x1 ? 1 : -1,
     dy = -Math.abs(y1 - y0),
-    sy = y0 < y1 ? 1 : -1,
-    err = dx + dy;
+    sy = y0 < y1 ? 1 : -1;
+  let err = dx + dy;
   ctx.fillStyle = color;
   for (let i = 0; i < 1200; i++) {
     ctx.fillRect(

@@ -1,14 +1,15 @@
+import { developmentURL } from "./browser-url.js";
+import { observationDirectory } from "./observation-files.js";
 import { chromium } from "@playwright/test";
 import assert from "node:assert/strict";
-import { mkdir, writeFile } from "node:fs/promises";
+import { writeFile } from "node:fs/promises";
 import { renderAudio } from "./audio-render.js";
 
-const destination = ".mdxr/20261007195700-echo-loom/assets";
+const destination = observationDirectory;
 const browser = await chromium.launch({ headless: true });
 try {
   const page = await browser.newPage();
-  await page.goto("http://127.0.0.1:5173/");
-  await mkdir(destination, { recursive: true });
+  await page.goto(developmentURL);
   const effects = [
     "shoot",
     "scatter",

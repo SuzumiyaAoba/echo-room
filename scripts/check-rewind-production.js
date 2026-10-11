@@ -1,3 +1,5 @@
+import { productionURL } from "./browser-url.js";
+import { observationInputPath, observationPath } from "./observation-files.js";
 import { chromium } from "@playwright/test";
 import assert from "node:assert/strict";
 import { readFile, writeFile } from "node:fs/promises";
@@ -5,7 +7,7 @@ import { SAVE_KEY, prepareImport } from "../src/save.js";
 
 const earnedPath =
   process.argv[2] ||
-  ".mdxr/20261007195700-echo-loom/assets/rewind-earned-rewind-fold.json";
+  (await observationInputPath("rewind-earned-rewind-fold.json"));
 const earnedText = await readFile(earnedPath, "utf8");
 const earned = prepareImport(earnedText).profile;
 assert.equal(earned.run.catalogVersion, 3);
@@ -67,13 +69,13 @@ async function pause(kind) {
   assert.deepEqual(after, before);
   const png = await page.locator("#world").evaluate((c) => c.toDataURL());
   await writeFile(
-    `/tmp/echo-rewind-offline-${kind}.png`,
+    observationPath(`echo-rewind-offline-${kind}.png`),
     Buffer.from(png.split(",")[1], "base64"),
   );
   return { milliseconds: 350, exact: true, before, after };
 }
 try {
-  await page.goto("http://127.0.0.1:4173/");
+  await page.goto(productionURL);
   await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
   const cache = await page.evaluate(async () => {
     const names = await caches.keys();
@@ -124,7 +126,9 @@ try {
     assert.deepEqual(target, { width: 40, height: 40, hit: true, checked });
     targets.push({ id, ...target });
   }
-  await page.screenshot({ path: "/tmp/echo-rewind-offline-settings.png" });
+  await page.screenshot({
+    path: observationPath("echo-rewind-offline-settings.png"),
+  });
   await page.getByRole("button", { name: "設定を閉じる" }).click();
   await page.getByRole("button", { name: "航路を続ける" }).click();
   const initial = await pause("entry");
@@ -179,7 +183,9 @@ try {
     assert.deepEqual(await read(), release.before);
     layouts.push({ viewport, ratio: box.width / box.height, exact: true });
     await page.screenshot({
-      path: `/tmp/echo-rewind-offline-${viewport.width}x${viewport.height}.png`,
+      path: observationPath(
+        `echo-rewind-offline-${viewport.width}x${viewport.height}.png`,
+      ),
     });
   }
   await page.getByRole("button", { name: "灯台へ戻る", exact: true }).click();
@@ -197,9 +203,9 @@ try {
     .getByRole("button", { name: "記録を書き出す", exact: true })
     .click();
   const download = await downloadPromise;
-  await download.saveAs("/tmp/echo-rewind-offline-export.json");
+  await download.saveAs(observationPath("echo-rewind-offline-export.json"));
   const exported = prepareImport(
-    await readFile("/tmp/echo-rewind-offline-export.json", "utf8"),
+    await readFile(observationPath("echo-rewind-offline-export.json"), "utf8"),
   ).profile;
   assert.deepEqual(exported, prepareImport(JSON.stringify(saved)).profile);
   await page.getByRole("button", { name: "設定を閉じる" }).click();
@@ -218,7 +224,7 @@ try {
   assert.deepEqual(JSON.parse(reloaded.before.save), saved);
   assert.deepEqual(errors, []);
   await writeFile(
-    "/tmp/echo-rewind-offline.json",
+    observationPath("echo-rewind-offline.json"),
     JSON.stringify(
       {
         scope:
@@ -257,14 +263,14 @@ try {
   );
 } catch (error) {
   await writeFile(
-    "/tmp/echo-rewind-offline-failure.json",
+    observationPath("echo-rewind-offline-failure.json"),
     JSON.stringify({ error: String(error), errors }, null, 2) + "\n",
   );
   await page
-    .screenshot({ path: "/tmp/echo-rewind-offline-failure.png" })
+    .screenshot({ path: observationPath("echo-rewind-offline-failure.png") })
     .catch(() => {});
   await context.tracing
-    .stop({ path: "/tmp/echo-rewind-offline-failure-trace.zip" })
+    .stop({ path: observationPath("echo-rewind-offline-failure-trace.zip") })
     .catch(() => {});
   throw error;
 } finally {

@@ -1,3 +1,4 @@
+import { artifactPath } from "./artifacts.js";
 import { test, expect } from "@playwright/test";
 import { writeFile, readFile } from "node:fs/promises";
 import { freshProfile, SAVE_KEY, prepareImport } from "../../src/save.js";
@@ -157,7 +158,7 @@ async function maps(page, run, next) {
 }
 const proof = async (name, browserName, value) =>
   writeFile(
-    `/tmp/echo-layouts-${name}-${browserName}.json`,
+    artifactPath(`echo-layouts-${name}-${browserName}.json`),
     JSON.stringify(value, null, 2) + "\n",
   );
 
@@ -181,7 +182,7 @@ test("18配置の実画素：旧描画は完全一致し、新描画は遮蔽物
   ).toBe(true);
   for (let i = 0; i < 3; i++)
     await writeFile(
-      `/tmp/echo-layouts-sheet-${browserName}-${i}.png`,
+      artifactPath(`echo-layouts-sheet-${browserName}-${i}.png`),
       Buffer.from(result.sheets[i].split(",")[1], "base64"),
     );
   expect(errors).toEqual([]);
@@ -207,7 +208,7 @@ test("公開の航路見取図・入室・Q・停止・再開で実際の地域�
   const previews = await maps(page, profile.run, 9);
   const planned = expected(profile.run, 9, "loom");
   await page.screenshot({
-    path: `/tmp/echo-layouts-routes-${browserName}.png`,
+    path: artifactPath(`echo-layouts-routes-${browserName}.png`),
   });
   await watchEntry(page);
   await page.locator('[data-action="route"][data-id="loom"]').click();
@@ -407,7 +408,7 @@ test("三つのタッチ画面で見取図と説明を読み、図をタップ�
       sizes.push({ width, height, ...view });
     }
     await page.screenshot({
-      path: `/tmp/echo-layouts-touch-${browserName}.png`,
+      path: artifactPath(`echo-layouts-touch-${browserName}.png`),
     });
     const rect = await page
       .locator('[data-action="route"][data-id="loom"] .route-map')

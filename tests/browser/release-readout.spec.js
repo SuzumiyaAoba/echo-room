@@ -1,12 +1,14 @@
+import { fixturePath } from "./artifacts.js";
+import { artifacts as assets } from "./artifacts.js";
 import { test, expect } from "@playwright/test";
 import { readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { SAVE_KEY, prepareImport } from "../../src/save.js";
-const assets = ".mdxr/20261007195700-echo-loom/assets";
+
 const source = "encounter-entry-shell-voyage-9.json";
 
 async function start(page) {
-  const bytes = await readFile(`${assets}/${source}`);
+  const bytes = await readFile(fixturePath(source));
   const earned = prepareImport(bytes.toString()).profile;
   await page.goto("/");
   await page.getByRole("button", { name: "設定", exact: true }).click();

@@ -1,3 +1,4 @@
+import { artifactPath, fixturePath } from "./artifacts.js";
 import { test, expect } from "@playwright/test";
 import { readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
@@ -11,7 +12,6 @@ import {
 } from "../../src/save.js";
 import { makeReturnRecord } from "../../src/return-record.js";
 
-const assets = ".mdxr/20261007195700-echo-loom/assets";
 const sha = (b) => createHash("sha256").update(b).digest("hex");
 const saved = (page) =>
   page.evaluate((k) => JSON.parse(localStorage.getItem(k)), SAVE_KEY);
@@ -37,7 +37,7 @@ function allProfile() {
 }
 async function proof(kind, engine, data) {
   await writeFile(
-    `/tmp/echo-return-${kind}-${engine}.json`,
+    artifactPath(`echo-return-${kind}-${engine}.json`),
     JSON.stringify(data, null, 2) + "\n",
   );
 }
@@ -154,7 +154,9 @@ test("帰還の全26種を読み、表示操作・再起動で保存を保ち、
   await page.locator(".return-performance > summary").click();
   await expect(page.locator(".return-performance")).toContainText("受けた被害");
   expect(await frozen(page)).toEqual(paused);
-  await page.screenshot({ path: `/tmp/echo-return-defeat-${browserName}.png` });
+  await page.screenshot({
+    path: artifactPath(`echo-return-defeat-${browserName}.png`),
+  });
   await page.getByRole("button", { name: "灯台へ帰る", exact: true }).click();
   await page.getByRole("button", { name: "直近の旅", exact: true }).click();
   await expect(page.getByRole("dialog")).toContainText("硝子針");
@@ -422,7 +424,9 @@ test.describe("小画面の直近の旅", () => {
       expect(layout.fragmentCount).toBe(26);
       expect(await saved(page)).toEqual(before);
       await page.screenshot({
-        path: `/tmp/echo-return-touch-${browserName}-${viewport.width}x${viewport.height}.png`,
+        path: artifactPath(
+          `echo-return-touch-${browserName}-${viewport.width}x${viewport.height}.png`,
+        ),
       });
       sizes.push({ viewport, ...layout });
       await page.getByRole("button", { name: "灯台へ戻る", exact: true }).tap();
@@ -442,7 +446,7 @@ test("実戦で得た最終入口を通常キーで勝利し、直近の旅へ�
   browserName,
 }) => {
   const bytes = await readFile(
-      `${assets}/memory-ward-arrival-needle-stitch-weaving.json`,
+      fixturePath("memory-ward-arrival-needle-stitch-weaving.json"),
     ),
     initial = prepareImport(bytes.toString()).profile;
   const errors = [],
@@ -529,7 +533,7 @@ test("実戦で得た最終入口を通常キーで勝利し、直近の旅へ�
   );
   const paused = await exactPause(page);
   await page.screenshot({
-    path: `/tmp/echo-return-victory-${browserName}.png`,
+    path: artifactPath(`echo-return-victory-${browserName}.png`),
   });
   await page.getByRole("button", { name: "灯台へ帰る", exact: true }).click();
   await page.reload();

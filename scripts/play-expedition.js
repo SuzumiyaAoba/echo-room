@@ -1,3 +1,8 @@
+import { developmentURL } from "./browser-url.js";
+import {
+  observationDirectory,
+  observationInputPath,
+} from "./observation-files.js";
 import { chromium } from "@playwright/test";
 import { readFile, writeFile } from "node:fs/promises";
 import assert from "node:assert/strict";
@@ -63,7 +68,7 @@ if (!Number.isInteger(repetitions) || repetitions < 1 || repetitions > 4)
   throw new Error("Expected one to four expeditions in the same page");
 if (!/^[a-z0-9-]+$/.test(artifactName))
   throw new Error("Expected a plain artifact name");
-const destination = ".mdxr/20261007195700-echo-loom/assets";
+const destination = observationDirectory;
 const browser = await chromium.launch({ headless: true });
 try {
   const page = await browser.newPage({
@@ -90,9 +95,9 @@ try {
       { key: SAVE_KEY, value: profile },
     );
   }
-  await page.goto("http://127.0.0.1:5173/");
+  await page.goto(developmentURL);
   if (relic === "bell") {
-    const bytes = await readFile(destination + "/" + bellSource);
+    const bytes = await readFile(await observationInputPath(bellSource));
     const earned = prepareImport(bytes.toString()).profile;
     assert.equal(earned.run, null);
     assert.equal(earned.unlocked.includes("bell"), false);

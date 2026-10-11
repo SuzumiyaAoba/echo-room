@@ -1,9 +1,10 @@
+import { artifacts as assets } from "./artifacts.js";
+import { clickOrTap } from "./interaction.js";
 import { test, expect } from "@playwright/test";
 import { readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { SAVE_KEY, prepareImport } from "../../src/save.js";
 
-const assets = ".mdxr/20261007195700-echo-loom/assets";
 const notices = await readFile("public/THIRD-PARTY-NOTICES.txt", "utf8");
 const version = JSON.parse(await readFile("package.json", "utf8")).version;
 const sha = (value) => createHash("sha256").update(value).digest("hex");
@@ -27,26 +28,28 @@ const world = (page) =>
 async function departure(page, touch = false) {
   await page.goto("/");
   await page.bringToFront();
-  await page
-    .getByRole("button", { name: "灯りをともす" })
-    [touch ? "tap" : "click"]();
+  await clickOrTap(page.getByRole("button", { name: "灯りをともす" }), touch);
   await page.locator("#seed").fill("HANDING-ON-A-LIGHT");
-  await page
-    .getByRole("button", { name: "この灯りで出発する" })
-    [touch ? "tap" : "click"]();
+  await clickOrTap(
+    page.getByRole("button", { name: "この灯りで出発する" }),
+    touch,
+  );
   await expect(page.locator(".first-help")).toBeVisible();
   await frame(page);
-  await page
-    .getByRole("button", { name: "最初のひと針へ →" })
-    [touch ? "tap" : "click"]();
-  await page
-    .getByRole("button", { name: "一時停止", exact: true })
-    [touch ? "tap" : "click"]();
+  await clickOrTap(
+    page.getByRole("button", { name: "最初のひと針へ →" }),
+    touch,
+  );
+  await clickOrTap(
+    page.getByRole("button", { name: "一時停止", exact: true }),
+    touch,
+  );
   await expect(page.getByRole("heading", { name: "潮を待つ" })).toBeVisible();
   await frame(page);
-  await page
-    .getByRole("button", { name: "設定", exact: true })
-    [touch ? "tap" : "click"]();
+  await clickOrTap(
+    page.getByRole("button", { name: "設定", exact: true }),
+    touch,
+  );
   await expect(page.getByRole("heading", { name: "灯りの調整" })).toBeVisible();
   await page.locator("#music-volume").fill("0.4");
   await frame(page);

@@ -1,9 +1,8 @@
+import { artifacts as assets } from "./artifacts.js";
 import { test, expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 import { freshProfile, SAVE_KEY } from "../../src/save.js";
 import { createRun } from "../../src/game.js";
-
-const assets = ".mdxr/20261007195700-echo-loom/assets";
 
 async function enter(page, stage) {
   const profile = freshProfile();
@@ -28,7 +27,7 @@ test("三ボスの予告を三つの時刻と二つの楽章で描き、変更�
     const { Game, createRun } = await import("/src/game.js");
     const { Renderer } = await import("/src/render.js");
     const { Renderer: Before } = await import(
-      "/.mdxr/20261007195700-echo-loom/assets/rifts-boss-baseline-render.mjs"
+      "/tests/fixtures/reference/rifts-boss-baseline-render.mjs"
     );
     const { chargePath } = await import("/src/boss-warning.js");
     const { segmentDistance } = await import("/src/math.js");

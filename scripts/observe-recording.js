@@ -1,3 +1,5 @@
+import { developmentURL } from "./browser-url.js";
+import { observationPath } from "./observation-files.js";
 import { chromium } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 import assert from "node:assert/strict";
@@ -51,14 +53,14 @@ async function pause(kind) {
   await page.waitForTimeout(350);
   assert.deepEqual(await read(), before);
   await writeFile(
-    `/tmp/echo-recording-${label}-${kind}.png`,
+    observationPath(`echo-recording-${label}-${kind}.png`),
     Buffer.from(before.png.split(",")[1], "base64"),
   );
   const { png, ...rest } = before;
   return { milliseconds: 350, exact: true, ...rest };
 }
 try {
-  await page.goto("http://127.0.0.1:5173/");
+  await page.goto(developmentURL);
   await page.getByRole("button", { name: "設定", exact: true }).click();
   await page.locator("#setting-flashes").uncheck();
   await page.locator("#setting-shake").uncheck();
@@ -84,7 +86,7 @@ try {
   const called = await pause("called");
   assert.deepEqual(errors, []);
   await writeFile(
-    `/tmp/echo-recording-${label}.json`,
+    observationPath(`echo-recording-${label}.json`),
     JSON.stringify(
       {
         scope:

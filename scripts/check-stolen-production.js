@@ -1,10 +1,12 @@
+import { productionURL } from "./browser-url.js";
+import { observationDirectory } from "./observation-files.js";
 import { chromium } from "@playwright/test";
 import assert from "node:assert/strict";
 import { writeFile } from "node:fs/promises";
 import { createRun } from "../src/game.js";
 import { freshProfile, exportProfile, SAVE_KEY } from "../src/save.js";
 
-const destination = ".mdxr/20261007195700-echo-loom/assets";
+const destination = observationDirectory;
 const fixture = freshProfile();
 fixture.attempts = 1;
 fixture.run = createRun("EXPEDITION-STOLEN-YESTERDAY");
@@ -19,7 +21,7 @@ try {
   const page = await context.newPage();
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
-  await page.goto("http://127.0.0.1:4173/");
+  await page.goto(productionURL);
   await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
   await context.setOffline(true);
   await page.reload();

@@ -1,8 +1,10 @@
+import { fixturePath } from "./artifacts.js";
+import { artifacts as assets } from "./artifacts.js";
 import { test, expect } from "@playwright/test";
 import { readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { SAVE_KEY, prepareImport } from "../../src/save.js";
-const assets = ".mdxr/20261007195700-echo-loom/assets";
+
 const sha = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const saved = (page) =>
   page.evaluate((key) => JSON.parse(localStorage.getItem(key)), SAVE_KEY);
@@ -61,7 +63,7 @@ test("獲得した庭の公開再開で自然な護りを読み、停止・四�
 }, info) => {
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
-  const file = `${assets}/encounter-entry-journey-weaving-9.json`,
+  const file = fixturePath("encounter-entry-journey-weaving-9.json"),
     bytes = await readFile(file),
     legacy = prepareImport(bytes.toString()).profile;
   expect(legacy.run.stage).toBe(9);

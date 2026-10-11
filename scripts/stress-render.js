@@ -1,3 +1,5 @@
+import { developmentOrigin, developmentURL } from "./browser-url.js";
+import { observationPath } from "./observation-files.js";
 import { chromium } from "@playwright/test";
 import { createRun } from "../src/game.js";
 import { UPGRADES } from "../src/content.js";
@@ -30,7 +32,7 @@ const context = await browser.newContext({
     cookies: [],
     origins: [
       {
-        origin: "http://127.0.0.1:5173",
+        origin: developmentOrigin,
         localStorage: [{ name: SAVE_KEY, value: JSON.stringify(profile) }],
       },
     ],
@@ -41,7 +43,7 @@ const page = await context.newPage(),
 page.on("pageerror", (error) => errors.push(error.message));
 if (legacyLines) {
   const source = withLegacyPixelLine(readFileSync("src/art.js", "utf8"));
-  await page.route("http://127.0.0.1:5173/src/art.js*", (route) =>
+  await page.route(new URL("src/art.js", developmentURL).href + "*", (route) =>
     route.fulfill({ contentType: "text/javascript", body: source }),
   );
 }
@@ -55,7 +57,7 @@ await page.addInitScript(() => {
 });
 const cdp = await context.newCDPSession(page);
 await cdp.send("Emulation.setCPUThrottlingRate", { rate: cpuRate });
-await page.goto("http://127.0.0.1:5173");
+await page.goto(developmentURL);
 await page.locator('[data-action="continue"]').click();
 await page.bringToFront();
 await page.evaluate(() => {
@@ -205,7 +207,7 @@ if (profiling) {
     .sort((a, b) => b.selfMs - a.selfMs)
     .slice(0, 30);
   writeFileSync(
-    `.mdxr/20261007195700-echo-loom/assets/${artifact}.cpuprofile`,
+    observationPath(`${artifact}.cpuprofile`),
     JSON.stringify(measured),
   );
 }
@@ -216,7 +218,7 @@ assert.ok(
   "Stress scene must continue simulating while measured",
 );
 await page.screenshot({
-  path: `.mdxr/20261007195700-echo-loom/assets/${artifact}.png`,
+  path: observationPath(`${artifact}.png`),
 });
 const report = {
   environment:
@@ -231,7 +233,7 @@ const report = {
   errors,
 };
 writeFileSync(
-  `.mdxr/20261007195700-echo-loom/assets/${artifact}.json`,
+  observationPath(`${artifact}.json`),
   JSON.stringify(report, null, 2),
 );
 console.log(

@@ -1,3 +1,4 @@
+import { artifactPath } from "./artifacts.js";
 import { test, expect } from "@playwright/test";
 import { readFile, writeFile } from "node:fs/promises";
 import { createRun } from "../../src/game.js";
@@ -114,7 +115,7 @@ async function exit(page) {
 }
 async function proof(name, engine, data) {
   await writeFile(
-    `/tmp/echo-rewind-${name}-${engine}.json`,
+    artifactPath(`echo-rewind-${name}-${engine}.json`),
     JSON.stringify(data, null, 2) + "\n",
   );
 }
@@ -130,7 +131,9 @@ test("公開の織片選択・航路・録画・Q・停止・実ファイル・�
   const card = page.locator('[data-action="upgrade"][data-id="rewind"]');
   await expect(card).toContainText("今から昔へ");
   await expect(card).toContainText("録画の始点");
-  await page.screenshot({ path: `/tmp/echo-rewind-choice-${browserName}.png` });
+  await page.screenshot({
+    path: artifactPath(`echo-rewind-choice-${browserName}.png`),
+  });
   await card.click();
   await exit(page);
   await page.locator('[data-action="route"][data-id="loom"]').click();
@@ -155,7 +158,7 @@ test("公開の織片選択・航路・録画・Q・停止・実ファイル・�
     y: g.history[0].y,
   });
   await page.screenshot({
-    path: `/tmp/echo-rewind-recording-${browserName}.png`,
+    path: artifactPath(`echo-rewind-recording-${browserName}.png`),
   });
   await page.getByRole("button", { name: "操作と残響の使い方" }).click();
   await expect(page.locator("#recording-help")).toContainText(
@@ -174,7 +177,7 @@ test("公開の織片選択・航路・録画・Q・停止・実ファイル・�
     y: actual.frames[actual.frame].y,
   });
   await page.screenshot({
-    path: `/tmp/echo-rewind-arrival-${browserName}.png`,
+    path: artifactPath(`echo-rewind-arrival-${browserName}.png`),
   });
   await page.getByRole("button", { name: "設定", exact: true }).click();
   const pending = page.waitForEvent("download");
@@ -341,7 +344,9 @@ test("三つのタッチ画面で逆再生の録画とQ/Rを読み、停止と�
       expect(layout.noOverflow).toBe(true);
       sizes.push({ viewport, exact: true, ...layout });
       await page.screenshot({
-        path: `/tmp/echo-rewind-touch-${browserName}-${viewport.width}x${viewport.height}.png`,
+        path: artifactPath(
+          `echo-rewind-touch-${browserName}-${viewport.width}x${viewport.height}.png`,
+        ),
       });
     }
     await page.getByRole("button", { name: "航路へ戻る", exact: true }).click();
@@ -509,7 +514,7 @@ test("三地域・三武器の描画を旧版と照合し、逆再生の始点�
   }
   for (const [index, png] of result.sheets.entries())
     await writeFile(
-      `/tmp/echo-rewind-art-${browserName}-${index}.png`,
+      artifactPath(`echo-rewind-art-${browserName}-${index}.png`),
       Buffer.from(png.split(",")[1], "base64"),
     );
   delete result.sheets;

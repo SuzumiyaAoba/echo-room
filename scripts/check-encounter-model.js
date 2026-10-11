@@ -1,9 +1,10 @@
+import { observationPath } from "./observation-files.js";
 import { writeFile } from "node:fs/promises";
 import { simulate } from "./simulate.js";
 import {
   Game as Before,
   createRun as beforeRun,
-} from "../.mdxr/20261007195700-echo-loom/assets/tactics-baseline/src/game.js";
+} from "../tests/fixtures/tactics-before/game.js";
 import { Game, createRun } from "../src/game.js";
 import { WEAPONS } from "../src/content.js";
 
@@ -36,7 +37,7 @@ for (const { id: weapon } of WEAPONS)
         );
       }
 await writeFile(
-  ".mdxr/20261007195700-echo-loom/assets/tactics-model.json",
+  observationPath("tactics-model.json"),
   JSON.stringify(
     {
       scope:

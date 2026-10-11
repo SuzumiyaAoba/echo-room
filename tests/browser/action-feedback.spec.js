@@ -1,3 +1,4 @@
+import { artifacts as a } from "./artifacts.js";
 import { test, expect } from "@playwright/test";
 import { readFile, writeFile } from "node:fs/promises";
 import { createRun } from "../../src/game.js";
@@ -5,7 +6,6 @@ import { catalogUpgrades } from "../../src/content.js";
 import { freshProfile, SAVE_KEY, prepareImport } from "../../src/save.js";
 import { PAD_HINTS } from "../../src/gamepad.js";
 
-const a = ".mdxr/20261007195700-echo-loom/assets";
 const engine = (name) => (name === "webkit" ? "webkit-action-feedback" : name);
 const proof = (kind, name, data) =>
   writeFile(

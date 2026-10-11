@@ -1,8 +1,9 @@
+import { artifactPath } from "./artifacts.js";
 import { test, expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 import { freshProfile, SAVE_KEY } from "../../src/save.js";
 
-const output = (kind, engine) => `/tmp/echo-ability-${kind}-${engine}`;
+const output = (kind, engine) => artifactPath(`echo-ability-${kind}-${engine}`);
 async function begin(page) {
   const profile = freshProfile();
   profile.attempts = 2;
@@ -156,9 +157,7 @@ test("実画素比較：出現と解放だけの範囲・敵の予告と弾の�
     const [{ Renderer }, { Renderer: Before }, { Game, createRun }] =
       await Promise.all([
         import("/src/render.js"),
-        import(
-          "/.mdxr/20261007195700-echo-loom/assets/rifts-ability-baseline-render.mjs"
-        ),
+        import("/tests/fixtures/reference/rifts-ability-baseline-render.mjs"),
         import("/src/game.js"),
       ]);
     const canvas = () => {

@@ -1,9 +1,11 @@
+import { developmentURL } from "./browser-url.js";
+import { observationDirectory } from "./observation-files.js";
 import { chromium } from "@playwright/test";
 import { readFile, writeFile } from "node:fs/promises";
 import assert from "node:assert/strict";
 import { withLegacyPixelLine } from "./line-reference.js";
 
-const destination = ".mdxr/20261007195700-echo-loom/assets";
+const destination = observationDirectory;
 const browser = await chromium.launch({ headless: true });
 try {
   const page = await browser.newPage();
@@ -36,7 +38,7 @@ try {
   }
   const cdp = await page.context().newCDPSession(page);
   await cdp.send("Emulation.setCPUThrottlingRate", { rate: 4 });
-  await page.goto("http://127.0.0.1:5173/");
+  await page.goto(developmentURL);
   const result = await page.evaluate(async () => {
     const { Renderer } = await import("/src/render.js");
     const { Renderer: LegacyRenderer } = await import(

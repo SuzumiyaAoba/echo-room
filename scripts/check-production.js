@@ -1,9 +1,11 @@
+import { productionURL } from "./browser-url.js";
+import { observationDirectory } from "./observation-files.js";
 import { chromium } from "@playwright/test";
 import assert from "node:assert/strict";
 import { readFile, writeFile } from "node:fs/promises";
 import { createRun } from "../src/game.js";
 import { observeUpgradeComparisons } from "./upgrade-observation.js";
-const destination = ".mdxr/20261007195700-echo-loom/assets";
+const destination = observationDirectory;
 const tag = process.argv.find((arg) => arg.startsWith("--tag="))?.slice(6);
 if (tag && !/^[a-z0-9-]+$/.test(tag))
   throw new Error("Expected a simple artifact tag");
@@ -29,7 +31,7 @@ await page.addInitScript(() => {
     }
   };
 });
-await page.goto("http://127.0.0.1:4173");
+await page.goto(productionURL);
 await page.waitForFunction(
   () => navigator.serviceWorker.controller !== null,
   {},

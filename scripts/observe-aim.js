@@ -1,9 +1,11 @@
+import { developmentURL } from "./browser-url.js";
+import { observationDirectory } from "./observation-files.js";
 import { chromium } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 import { freshProfile, SAVE_KEY } from "../src/save.js";
 
 const label = process.argv[2] || "before";
-const root = ".mdxr/20261007195700-echo-loom/assets";
+const root = observationDirectory;
 const browser = await chromium.launch();
 try {
   const page = await browser.newPage({
@@ -18,7 +20,7 @@ try {
     ({ key, value }) => localStorage.setItem(key, JSON.stringify(value)),
     { key: SAVE_KEY, value: profile },
   );
-  await page.goto("http://127.0.0.1:5173/");
+  await page.goto(developmentURL);
   await page.getByRole("button", { name: "灯りをともす" }).click();
   await page.locator("#seed").fill("AIM-AFTER-PAUSE");
   await page.getByRole("button", { name: "この灯りで出発する" }).click();

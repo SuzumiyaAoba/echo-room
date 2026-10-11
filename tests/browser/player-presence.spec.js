@@ -1,7 +1,7 @@
+import { fixturePath } from "./artifacts.js";
+import { artifacts as assets } from "./artifacts.js";
 import { test, expect } from "@playwright/test";
 import { readFile, writeFile } from "node:fs/promises";
-
-const assets = ".mdxr/20261007195700-echo-loom/assets";
 
 test("実際の終盤入口と通常のQで重なった残響からミナの足元を見分け、停止中は状態・画素・保存を保つ", async ({
   page,
@@ -13,7 +13,9 @@ test("実際の終盤入口と通常のQで重なった残響からミナの足�
   await page.locator("#save-file").setInputFiles({
     name: "earned-entry.json",
     mimeType: "application/json",
-    buffer: await readFile(`${assets}/memory-ward-arrival-bell-weaving.json`),
+    buffer: await readFile(
+      fixturePath("memory-ward-arrival-bell-weaving.json"),
+    ),
   });
   await page
     .getByRole("button", { name: "記録を取り込む", exact: true })

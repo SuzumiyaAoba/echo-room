@@ -11,12 +11,17 @@
     "serve:browser": "node scripts/serve-browser.js --root dist",
     "test": "node --test tests/*.test.js",
     "test:browser": "playwright test",
-    "format": "prettier --write src scripts tests index.html package.json vite.config.js playwright.config.js",
-    "format:check": "prettier --check src scripts tests index.html package.json vite.config.js playwright.config.js"
+    "lint": "eslint . --max-warnings 0",
+    "check": "npm run lint && npm run format:check && npm test && npm run build",
+    "format": "prettier --write src scripts tests index.html package.json *.config.js",
+    "format:check": "prettier --check src scripts tests index.html package.json *.config.js"
   },
   "devDependencies": {
+    "@eslint/js": "10.0.1",
     "@playwright/test": "1.56.1",
+    "eslint": "10.11.0",
+    "globals": "16.5.0",
     "prettier": "3.6.2",
-    "vite": "7.1.11"
+    "vite": "7.3.7"
   }
 }

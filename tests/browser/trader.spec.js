@@ -1,3 +1,4 @@
+import { artifacts as artifacts } from "./artifacts.js";
 import { test, expect } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 import { createRun } from "../../src/game.js";
@@ -5,7 +6,6 @@ import { UPGRADES, rank } from "../../src/content.js";
 import { traderStock, traderPrice } from "../../src/trader.js";
 import { freshProfile, SAVE_KEY } from "../../src/save.js";
 
-const artifacts = ".mdxr/20261007195700-echo-loom/assets";
 function profile(stage = 2) {
   const p = freshProfile();
   p.attempts = 1;

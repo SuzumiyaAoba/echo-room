@@ -1,3 +1,4 @@
+import { developmentURL } from "./browser-url.js";
 import assert from "node:assert/strict";
 import { readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
@@ -131,7 +132,7 @@ export async function inspectExpeditionReturn({
     const target = await importedContext.newPage();
     const errors = [];
     target.on("pageerror", (error) => errors.push(error.message));
-    await target.goto("http://127.0.0.1:5173/");
+    await target.goto(developmentURL);
     assert.equal(
       await saved(target),
       null,

@@ -1,9 +1,8 @@
+import { artifacts as artifacts } from "./artifacts.js";
 import { test, expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 import { createRun } from "../../src/game.js";
 import { freshProfile, SAVE_KEY } from "../../src/save.js";
-
-const artifacts = ".mdxr/20261007195700-echo-loom/assets";
 
 async function start(page, stage) {
   const profile = freshProfile();

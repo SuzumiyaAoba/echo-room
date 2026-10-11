@@ -1,3 +1,5 @@
+import { fixturePath } from "./artifacts.js";
+import { artifacts as assets } from "./artifacts.js";
 import { test, expect } from "@playwright/test";
 import { readFile, writeFile } from "node:fs/promises";
 import { createRun } from "../../src/game.js";
@@ -7,7 +9,7 @@ import {
   exportProfile,
   prepareImport,
 } from "../../src/save.js";
-const assets = ".mdxr/20261007195700-echo-loom/assets";
+
 async function importPublic(page, bytes) {
   await page.goto("/");
   await page.getByRole("button", { name: "設定", exact: true }).click();
@@ -147,7 +149,7 @@ test("実際の帰還報酬で鈴を解放し、新しい旅の消弾・充填�
   page,
   browserName,
 }) => {
-  const bytes = await readFile(assets + "/return-offline-export.json");
+  const bytes = await readFile(fixturePath("return-offline-export.json"));
   const initial = prepareImport(bytes.toString()).profile;
   await importPublic(page, bytes);
   await page.getByRole("button", { name: "灯守の工房", exact: true }).click();

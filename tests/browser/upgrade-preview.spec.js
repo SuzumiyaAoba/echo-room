@@ -1,3 +1,4 @@
+import { artifacts as artifacts } from "./artifacts.js";
 import { test, expect } from "@playwright/test";
 import { SAVE_KEY } from "../../src/save.js";
 import {
@@ -6,7 +7,7 @@ import {
 } from "../fixtures/upgrade-preview.js";
 
 test.use({ hasTouch: true });
-const artifacts = ".mdxr/20261007195700-echo-loom/assets";
+
 async function open(page, profile) {
   await page.addInitScript(
     ({ key, value }) => {

@@ -1,4 +1,3 @@
-import { clamp } from "./math.js";
 import { bindingsFor, keyCodes } from "./keybindings.js";
 import { GamepadInput } from "./gamepad.js";
 export class Input {

@@ -1,8 +1,10 @@
+import { artifacts as assets } from "./artifacts.js";
+import { clickOrTap } from "./interaction.js";
 import { test, expect } from "@playwright/test";
 import { readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { SAVE_KEY, prepareImport } from "../../src/save.js";
-const assets = ".mdxr/20261007195700-echo-loom/assets";
+
 const sizes = [
   { width: 1200, height: 850 },
   { width: 390, height: 844 },
@@ -24,13 +26,12 @@ const frozen = (page) =>
   );
 const world = ({ game, pixels, save }) => ({ game, pixels, save });
 async function start(page, seed, touch = false) {
-  await page
-    .getByRole("button", { name: "灯りをともす" })
-    [touch ? "tap" : "click"]();
+  await clickOrTap(page.getByRole("button", { name: "灯りをともす" }), touch);
   await page.locator("#seed").fill(seed);
-  await page
-    .getByRole("button", { name: "この灯りで出発する" })
-    [touch ? "tap" : "click"]();
+  await clickOrTap(
+    page.getByRole("button", { name: "この灯りで出発する" }),
+    touch,
+  );
   await expect(page.locator(".first-help")).toBeVisible();
   await page.waitForTimeout(250);
   await page.evaluate(

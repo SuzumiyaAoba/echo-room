@@ -1,9 +1,9 @@
+import { fixturePath } from "./artifacts.js";
+import { artifacts as assets } from "./artifacts.js";
 import { test, expect } from "@playwright/test";
 import { readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { freshProfile, SAVE_KEY } from "../../src/save.js";
-
-const assets = ".mdxr/20261007195700-echo-loom/assets";
 
 async function collect(page) {
   await page.evaluate(async () => {
@@ -140,7 +140,7 @@ test("三武器・八方向・現在と残響・四時刻・発光設定の384�
     const { Game, createRun } = await import("/src/game.js");
     const { Renderer } = await import("/src/render.js");
     const { Renderer: Before } = await import(
-      "/.mdxr/20261007195700-echo-loom/assets/weapon-pose-baseline-render.mjs"
+      "/tests/fixtures/reference/weapon-pose-baseline-render.mjs"
     );
     const make = () => {
       const canvas = document.createElement("canvas");
@@ -295,7 +295,7 @@ test("獲得した連射の記録を取り込み、発光なしで移動・回�
   page,
 }, info) => {
   const record = await readFile(
-    `${assets}/memory-ward-arrival-needle-stitch-shooting.json`,
+    fixturePath("memory-ward-arrival-needle-stitch-shooting.json"),
   );
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));

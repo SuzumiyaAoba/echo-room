@@ -1,10 +1,10 @@
+import { artifacts as artifacts } from "./artifacts.js";
 import { test, expect } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 import { Game, createRun } from "../../src/game.js";
 import { freshProfile, SAVE_KEY } from "../../src/save.js";
 import { canChooseStory } from "../../src/story.js";
 
-const artifacts = ".mdxr/20261007195700-echo-loom/assets";
 function pendingProfile() {
   const p = freshProfile();
   p.attempts = 2;

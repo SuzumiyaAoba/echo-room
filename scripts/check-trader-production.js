@@ -1,3 +1,8 @@
+import { productionURL } from "./browser-url.js";
+import {
+  observationDirectory,
+  observationInputPath,
+} from "./observation-files.js";
 import { chromium } from "@playwright/test";
 import assert from "node:assert/strict";
 import { readFile, writeFile } from "node:fs/promises";
@@ -13,9 +18,11 @@ if (!/^[a-z0-9-]+$/.test(artifact))
   throw new Error("Expected a plain artifact name");
 if (!/^[a-z0-9-]+$/.test(outputTag))
   throw new Error("Expected a plain output tag");
-const destination = ".mdxr/20261007195700-echo-loom/assets";
+const destination = observationDirectory;
 const testPreviews = process.argv.includes("--preview");
-const record = await readFile(`${destination}/trader-arrival-${artifact}.json`);
+const record = await readFile(
+  await observationInputPath(`trader-arrival-${artifact}.json`),
+);
 const initial = prepareImport(record.toString()).profile.run;
 assert.equal(initial.checkpoint, "shop");
 const expectedStock = traderStock(initial);
@@ -35,7 +42,7 @@ try {
       }
     };
   });
-  await page.goto("http://127.0.0.1:4173/");
+  await page.goto(productionURL);
   await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
   await context.setOffline(true);
   await page.reload();

@@ -1,3 +1,8 @@
+import { productionURL } from "./browser-url.js";
+import {
+  observationDirectory,
+  observationInputPath,
+} from "./observation-files.js";
 import { chromium } from "@playwright/test";
 import assert from "node:assert/strict";
 import { readFile, writeFile } from "node:fs/promises";
@@ -7,7 +12,7 @@ import { Game } from "../src/game.js";
 const artifact = process.argv[2] || "weaving-counter";
 if (!/^[a-z0-9-]+$/.test(artifact))
   throw new Error("Expected a plain artifact name");
-const destination = ".mdxr/20261007195700-echo-loom/assets";
+const destination = observationDirectory;
 const tag = process.argv.find((arg) => arg.startsWith("--tag="))?.slice(6);
 if (tag && !/^[a-z0-9-]+$/.test(tag))
   throw new Error("Expected a simple artifact tag");
@@ -15,10 +20,13 @@ const outputArtifact = `${artifact}${tag ? `-${tag}` : ""}`;
 const testEchoStatus = process.argv.includes("--echo-status");
 const fromTrader = process.argv.includes("--from-trader");
 const sourceArtifact = `${fromTrader ? "trader-arrival" : "counter-earned"}-${artifact}.json`;
-const record = await readFile(`${destination}/${sourceArtifact}`);
+const record = await readFile(await observationInputPath(`${sourceArtifact}`));
 const initial = prepareImport(record.toString()).profile.run;
 const expedition = JSON.parse(
-  await readFile(`${destination}/expedition-${artifact}.json`, "utf8"),
+  await readFile(
+    await observationInputPath(`expedition-${artifact}.json`),
+    "utf8",
+  ),
 );
 const provenance = expedition;
 assert.equal(initial.upgrades.counter, 1);
@@ -63,7 +71,7 @@ try {
       }
     };
   });
-  await page.goto("http://127.0.0.1:4173/");
+  await page.goto(productionURL);
   await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
   await context.setOffline(true);
   await page.reload();

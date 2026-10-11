@@ -1,8 +1,8 @@
+import { artifacts as assets } from "./artifacts.js";
 import { test, expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 import { SAVE_KEY } from "../../src/save.js";
 
-const assets = ".mdxr/20261007195700-echo-loom/assets";
 const name = (browserName) =>
   browserName === "webkit" ? "webkit-spawn-warning" : browserName;
 const proof = async (kind, engine, value) =>
@@ -24,9 +24,7 @@ async function modules(page) {
       { sprite },
     ] = await Promise.all([
       import("/src/render.js"),
-      import(
-        "/.mdxr/20261007195700-echo-loom/assets/rifts-predecessor-render.mjs"
-      ),
+      import("/tests/fixtures/reference/rifts-predecessor-render.mjs"),
       import("/src/game.js"),
       import("/src/content.js"),
       import("/src/spawn-warning.js"),

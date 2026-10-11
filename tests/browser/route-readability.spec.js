@@ -1,8 +1,10 @@
+import { fixturePath } from "./artifacts.js";
+import { artifacts as assets } from "./artifacts.js";
 import { test, expect } from "@playwright/test";
 import { readFile, writeFile } from "node:fs/promises";
 import { createRun, forecastRoom, Game } from "../../src/game.js";
 import { freshProfile, exportProfile, SAVE_KEY } from "../../src/save.js";
-const assets = ".mdxr/20261007195700-echo-loom/assets";
+
 async function importProfile(page, profile) {
   await page.goto("/");
   await page.getByRole("button", { name: "設定", exact: true }).click();
@@ -72,7 +74,7 @@ test("実戦から得た休息後の分岐で三構成と報酬を初期表示�
   page,
 }, info) => {
   const profile = JSON.parse(
-    await readFile(assets + "/forks-earned-rest-entry.json", "utf8"),
+    await readFile(fixturePath("forks-earned-rest-entry.json"), "utf8"),
   );
   expect(profile.run.stage).toBe(18);
   expect(profile.run.checkpoint).toBe("cleared");

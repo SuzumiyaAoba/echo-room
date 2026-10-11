@@ -1,9 +1,10 @@
+import { fixturePath } from "./artifacts.js";
+import { artifacts as assets } from "./artifacts.js";
 import { test, expect } from "@playwright/test";
 import { readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { freshProfile, SAVE_KEY, prepareImport } from "../../src/save.js";
 
-const assets = ".mdxr/20261007195700-echo-loom/assets";
 const sha = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const frozen = (page) =>
   page.evaluate(() => ({
@@ -341,7 +342,7 @@ test("実際に獲得した最終部屋を通常キーで勝利し、ボスの�
   page,
 }, info) => {
   const record = await readFile(
-    `${assets}/memory-ward-arrival-needle-stitch-weaving.json`,
+    fixturePath("memory-ward-arrival-needle-stitch-weaving.json"),
   );
   const initial = prepareImport(record.toString()).profile;
   const errors = [],

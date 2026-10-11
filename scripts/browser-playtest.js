@@ -1,9 +1,11 @@
+import { developmentURL } from "./browser-url.js";
+import { observationPath } from "./observation-files.js";
 import { chromium } from "@playwright/test";
 const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage({ viewport: { width: 1200, height: 850 } });
 const errors = [];
 page.on("pageerror", (e) => errors.push(e.message));
-await page.goto("http://127.0.0.1:5173");
+await page.goto(developmentURL);
 await page.getByRole("button", { name: "灯りをともす" }).click();
 await page.locator("#seed").fill("LIVE-COMBAT");
 await page.getByRole("button", { name: "この灯りで出発する" }).click();
@@ -21,13 +23,13 @@ for (let i = 0; i < inputs.length; i++) {
   observations.push(await page.evaluate(() => window.__ECHO_LOOM__.snapshot()));
   if (i === 2)
     await page.screenshot({
-      path: ".mdxr/20261007195700-echo-loom/assets/live-combat.png",
+      path: observationPath("live-combat.png"),
     });
   if (observations.at(-1).screen !== "play") break;
 }
 await page.keyboard.up("KeyJ");
 await page.screenshot({
-  path: ".mdxr/20261007195700-echo-loom/assets/live-final.png",
+  path: observationPath("live-final.png"),
 });
 console.log(
   JSON.stringify(

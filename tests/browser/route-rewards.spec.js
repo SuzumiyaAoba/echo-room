@@ -1,9 +1,8 @@
+import { artifacts as artifact } from "./artifacts.js";
 import { test, expect } from "@playwright/test";
 import { createRun, forecastRoom } from "../../src/game.js";
 import { freshProfile, SAVE_KEY } from "../../src/save.js";
 import { UPGRADES, isBoss } from "../../src/content.js";
-
-const artifact = ".mdxr/20261007195700-echo-loom/assets";
 
 async function atFork(page, next = 1, upgrades = {}) {
   const profile = freshProfile();

@@ -1,0 +1,283 @@
+{
+  "scope": "Fresh public expedition LESSON-FIRST and no movement or shooting. Temporary observer calls actual Game.hurt exactly once and reads accepted damage only. No combat, HP, queue, RNG, time or save writes. This is a real early defeat, not a victory or a gameplay-quality claim.",
+  "profile": {
+    "version": 1,
+    "memory": 5,
+    "attempts": 1,
+    "victories": 0,
+    "best": 1,
+    "totalKills": 0,
+    "unlocked": [
+      "needle",
+      "spool"
+    ],
+    "lore": [
+      "start"
+    ],
+    "seen": [],
+    "remembered": [],
+    "stories": [],
+    "endings": [],
+    "settings": {
+      "music": 0.35,
+      "effects": 0.6,
+      "shake": true,
+      "flashes": true,
+      "autoAim": false
+    },
+    "run": null,
+    "lastReturn": {
+      "version": 1,
+      "outcome": "defeat",
+      "memory": 5,
+      "run": {
+        "seed": "LESSON-FIRST",
+        "weapon": "needle",
+        "relic": "spool",
+        "stage": 0,
+        "difficulty": 0,
+        "catalogVersion": 3,
+        "time": 18.85000000000021,
+        "damageTaken": 108,
+        "kills": 0,
+        "echoesCast": 0,
+        "threadKills": 0,
+        "threadCuts": 0,
+        "threadReturns": 0,
+        "cordCuts": 0,
+        "memoryCuts": 0,
+        "prismSplits": 0,
+        "needleStitches": 0,
+        "upgrades": {},
+        "startingFragment": null,
+        "encounterVersion": 1
+      },
+      "light": {
+        "capacity": 1,
+        "chargeSeconds": 7,
+        "lifeSeconds": 4.6,
+        "playback": "forward"
+      }
+    }
+  },
+  "hits": [
+    {
+      "before": {
+        "hp": 100,
+        "damage": 0
+      },
+      "amount": 9,
+      "source": {
+        "kind": "crawler",
+        "bullet": false,
+        "hazard": false,
+        "state": "move",
+        "elite": false
+      },
+      "damage": 9,
+      "hpAfter": 91,
+      "mode": "combat",
+      "time": 5.733333333333318
+    },
+    {
+      "before": {
+        "hp": 91,
+        "damage": 9
+      },
+      "amount": 9,
+      "source": {
+        "kind": "crawler",
+        "bullet": false,
+        "hazard": false,
+        "state": "move",
+        "elite": false
+      },
+      "damage": 9,
+      "hpAfter": 82,
+      "mode": "combat",
+      "time": 6.849999999999981
+    },
+    {
+      "before": {
+        "hp": 82,
+        "damage": 18
+      },
+      "amount": 9,
+      "source": {
+        "kind": "crawler",
+        "bullet": false,
+        "hazard": false,
+        "state": "move",
+        "elite": false
+      },
+      "damage": 9,
+      "hpAfter": 73,
+      "mode": "combat",
+      "time": 7.949999999999977
+    },
+    {
+      "before": {
+        "hp": 73,
+        "damage": 27
+      },
+      "amount": 9,
+      "source": {
+        "kind": "crawler",
+        "bullet": false,
+        "hazard": false,
+        "state": "move",
+        "elite": false
+      },
+      "damage": 9,
+      "hpAfter": 64,
+      "mode": "combat",
+      "time": 9.066666666666697
+    },
+    {
+      "before": {
+        "hp": 64,
+        "damage": 36
+      },
+      "amount": 9,
+      "source": {
+        "kind": "crawler",
+        "bullet": false,
+        "hazard": false,
+        "state": "move",
+        "elite": false
+      },
+      "damage": 9,
+      "hpAfter": 55,
+      "mode": "combat",
+      "time": 10.350000000000094
+    },
+    {
+      "before": {
+        "hp": 55,
+        "damage": 45
+      },
+      "amount": 9,
+      "source": {
+        "kind": "crawler",
+        "bullet": false,
+        "hazard": false,
+        "state": "move",
+        "elite": false
+      },
+      "damage": 9,
+      "hpAfter": 46,
+      "mode": "combat",
+      "time": 11.483333333333483
+    },
+    {
+      "before": {
+        "hp": 46,
+        "damage": 54
+      },
+      "amount": 9,
+      "source": {
+        "kind": "crawler",
+        "bullet": false,
+        "hazard": false,
+        "state": "move",
+        "elite": false
+      },
+      "damage": 9,
+      "hpAfter": 37,
+      "mode": "combat",
+      "time": 12.750000000000213
+    },
+    {
+      "before": {
+        "hp": 37,
+        "damage": 63
+      },
+      "amount": 9,
+      "source": {
+        "kind": "crawler",
+        "bullet": false,
+        "hazard": false,
+        "state": "move",
+        "elite": false
+      },
+      "damage": 9,
+      "hpAfter": 28,
+      "mode": "combat",
+      "time": 14.050000000000278
+    },
+    {
+      "before": {
+        "hp": 28,
+        "damage": 72
+      },
+      "amount": 9,
+      "source": {
+        "kind": "crawler",
+        "bullet": false,
+        "hazard": false,
+        "state": "move",
+        "elite": false
+      },
+      "damage": 9,
+      "hpAfter": 19,
+      "mode": "combat",
+      "time": 15.150000000000333
+    },
+    {
+      "before": {
+        "hp": 19,
+        "damage": 81
+      },
+      "amount": 9,
+      "source": {
+        "kind": "crawler",
+        "bullet": false,
+        "hazard": false,
+        "state": "move",
+        "elite": false
+      },
+      "damage": 9,
+      "hpAfter": 10,
+      "mode": "combat",
+      "time": 16.450000000000347
+    },
+    {
+      "before": {
+        "hp": 10,
+        "damage": 90
+      },
+      "amount": 9,
+      "source": {
+        "kind": "crawler",
+        "bullet": false,
+        "hazard": false,
+        "state": "move",
+        "elite": false
+      },
+      "damage": 9,
+      "hpAfter": 1,
+      "mode": "combat",
+      "time": 17.550000000000285
+    },
+    {
+      "before": {
+        "hp": 1,
+        "damage": 99
+      },
+      "amount": 9,
+      "source": {
+        "kind": "crawler",
+        "bullet": false,
+        "hazard": false,
+        "state": "move",
+        "elite": false
+      },
+      "damage": 9,
+      "hpAfter": 0,
+      "mode": "dead",
+      "time": 18.85000000000021
+    }
+  ],
+  "text": "0 / 100\n沈んだ埠頭\n01 / 01 · 00:18\n0\n織\nⅡ\nSPACE 回避\nREADY\nQ 残響\nREADY · 1/1\n録画 3.6秒\nR 解放\n残響をほどく\nWASD 移動\n\nJ / クリック 射撃\n自動照準\nRETURN TO THE LIGHTHOUSE\n灯りは、またともる\nNOT ALL LIGHT IS LOST\n\nあなたの灯りは、水の底でほどけた。\nけれど、織った昨日は消えていない。\n持ち帰った記憶が、次の灯りになる。\n\n5\n持ち帰った記憶\n0\nほどいた影\n0\n織った残響\n00:18\n灯りの時間\n\n縫い針\n/\n祖母の糸巻き\n\n残響 最大1体 · 充填 7.0秒 · 寿命 4.6秒\n\n今回の織目\n0種 · 合計0段\n全ての織片を読む\n灯りの足跡\n到達 1 / 24部屋\n戦いの記録を読む\n灯台へ帰る\nもう一度、織る →",
+  "errors": []
+}

@@ -1,11 +1,10 @@
+import { observationPath } from "./observation-files.js";
 import assert from "node:assert/strict";
 import { writeFile } from "node:fs/promises";
 import { SIMULATION_STYLES, simulate } from "./simulate.js";
 
 const samples = Number(process.argv[2] || 3);
-const destination =
-  process.argv[3] ||
-  ".mdxr/20261007195700-echo-loom/assets/balance-styles.json";
+const destination = process.argv[3] || observationPath("balance-styles.json");
 const rows = [];
 const groups = [];
 for (const weapon of ["needle", "scatter", "prism"])

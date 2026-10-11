@@ -1,0 +1,1715 @@
+{
+  "environment": "Native headless Chromium keyboard pilot, fresh profile, needle/spool selected through the native setup UI; subsequent expeditions through the actual replay UI in the same page; actual three-card rewards and forecast-based trader decisions and paid recovery, otherwise full rest, no combat/health/clock mutations; native silent audio output. Not a human enjoyment evaluation. Heap figures cover JavaScript after forced GC, not total browser/native audio memory.",
+  "weapon": "needle",
+  "preUnlockedFixture": false,
+  "seed": "EXPEDITION-REROLL",
+  "style": "weaving",
+  "expedition": 1,
+  "outcome": "victory",
+  "wallSeconds": 419,
+  "run": {
+    "seed": "EXPEDITION-REROLL",
+    "weapon": "needle",
+    "relic": "spool",
+    "difficulty": 0,
+    "stage": 23,
+    "route": "loom",
+    "hp": 82,
+    "maxHp": 100,
+    "scrap": 672,
+    "memory": 0,
+    "kills": 184,
+    "time": 411.99999999995396,
+    "upgrades": {
+      "homing": 1,
+      "double": 2,
+      "thread": 2,
+      "triangle": 1,
+      "burst": 2,
+      "damage": 4,
+      "resonance": 1,
+      "suture": 1,
+      "quickecho": 2,
+      "duration": 1,
+      "wide": 1
+    },
+    "rewardRoll": 0,
+    "bosses": [
+      "ferryman",
+      "gardener",
+      "heart"
+    ],
+    "beacons": [],
+    "repairs": [],
+    "journal": [],
+    "startingFragment": null,
+    "damageTaken": 107,
+    "echoesCast": 102,
+    "threadKills": 6,
+    "cordCuts": 1,
+    "memoryCuts": 17,
+    "prismSplits": 0,
+    "checkpoint": "entry"
+  },
+  "stages": [
+    {
+      "stage": 0,
+      "mode": "combat",
+      "position": {
+        "x": 240,
+        "y": 235
+      },
+      "hp": 100,
+      "runSeconds": 0.016666666666666666
+    },
+    {
+      "stage": 1,
+      "mode": "combat",
+      "position": {
+        "x": 240,
+        "y": 235
+      },
+      "hp": 100,
+      "runSeconds": 12.76666666666688
+    },
+    {
+      "stage": 2,
+      "mode": "event",
+      "position": {
+        "x": 240,
+        "y": 235
+      },
+      "hp": 100,
+      "runSeconds": 25.616666666666493
+    },
+    {
+      "stage": 3,
+      "mode": "combat",
+      "position": {
+        "x": 240,
+        "y": 235
+      },
+      "hp": 100,
+      "runSeconds": 27.583333333333048
+    },
+    {
+      "stage": 4,
+      "mode": "combat",
+      "position": {
+        "x": 240,
+        "y": 235
+      },
+      "hp": 100,
+      "runSeconds": 38.84999999999908
+    },
+    {
+      "stage": 5,
+      "mode": "event",
+      "position": {
+        "x": 240,
+        "y": 235
+      },
+      "hp": 92,
+      "runSeconds": 56.766666666664726
+    },
+    {
+      "stage": 6,
+      "mode": "combat",
+      "position": {
+        "x": 240,
+        "y": 235
+      },
+      "hp": 100,
+      "runSeconds": 58.716666666664615
+    },
+    {
+      "stage": 7,
+      "mode": "combat",
+      "position": {
+        "x": 240,
+        "y": 235
+      },
+      "hp": 100,
+      "runSeconds": 77.63333333333021
+    },
+    {
+      "stage": 8,
+      "mode": "combat",
+      "position": {
+        "x": 240,
+        "y": 235
+      },
+      "hp": 100,
+      "runSeconds": 96.14999999999583
+    },
+    {
+      "stage": 9,
+      "mode": "combat",
+      "position": {
+        "x": 240,
+        "y": 235
+      },
+      "hp": 100,
+      "runSeconds": 123.01666666666097
+    },
+    {
+      "stage": 10,
+      "mode": "event",
+      "position": {
+        "x": 240,
+        "y": 235
+      },
+      "hp": 100,
+      "runSeconds": 152.21666666667994
+    },
+    {
+      "stage": 11,
+      "mode": "combat",
+      "position": {
+        "x": 240,
+        "y": 235
+      },
+      "hp": 100,
+      "runSeconds": 154.18333333334817
+    },
+    {
+      "stage": 12,
+      "mode": "combat",
+      "position": {
+        "x": 240,
+        "y": 235
+      },
+      "hp": 88,
+      "runSeconds": 179.0000000000346
+    },
+    {
+      "stage": 13,
+      "mode": "event",
+      "position": {
+        "x": 240,
+        "y": 235
+      },
+      "hp": 100,
+      "runSeconds": 205.93333333338936
+    },
+    {
+      "stage": 14,
+      "mode": "combat",
+      "position": {
+        "x": 240,
+        "y": 235
+      },
+      "hp": 100,
+      "runSeconds": 207.9000000000576
+    },
+    {
+      "stage": 15,
+      "mode": "combat",
+      "position": {
+        "x": 240,
+        "y": 235
+      },
+      "hp": 100,
+      "runSeconds": 239.63333333341618
+    },
+    {
+      "stage": 16,
+      "mode": "combat",
+      "position": {
+        "x": 240,
+        "y": 235
+      },
+      "hp": 100,
+      "runSeconds": 258.0333333334273
+    },
+    {
+      "stage": 17,
+      "mode": "combat",
+      "position": {
+        "x": 240,
+        "y": 235
+      },
+      "hp": 90,
+      "runSeconds": 280.2500000000738
+    },
+    {
+      "stage": 18,
+      "mode": "event",
+      "position": {
+        "x": 240,
+        "y": 235
+      },
+      "hp": 100,
+      "runSeconds": 298.65000000005705
+    },
+    {
+      "stage": 19,
+      "mode": "combat",
+      "position": {
+        "x": 240,
+        "y": 235
+      },
+      "hp": 100,
+      "runSeconds": 300.5833333333886
+    },
+    {
+      "stage": 20,
+      "mode": "combat",
+      "position": {
+        "x": 240,
+        "y": 235
+      },
+      "hp": 88,
+      "runSeconds": 323.3166666667013
+    },
+    {
+      "stage": 21,
+      "mode": "event",
+      "position": {
+        "x": 240,
+        "y": 235
+      },
+      "hp": 100,
+      "runSeconds": 342.91666666668345
+    },
+    {
+      "stage": 22,
+      "mode": "combat",
+      "position": {
+        "x": 240,
+        "y": 235
+      },
+      "hp": 100,
+      "runSeconds": 344.88333333334833
+    },
+    {
+      "stage": 23,
+      "mode": "combat",
+      "position": {
+        "x": 240,
+        "y": 235
+      },
+      "hp": 100,
+      "runSeconds": 384.16666666664594
+    }
+  ],
+  "choices": [
+    {
+      "stage": 0,
+      "id": "homing",
+      "offered": [
+        "homing",
+        "salvage",
+        "dashthread"
+      ]
+    },
+    {
+      "stage": 1,
+      "id": "double",
+      "offered": [
+        "double",
+        "thread",
+        "salvage"
+      ]
+    },
+    {
+      "stage": 3,
+      "id": "double",
+      "offered": [
+        "double",
+        "dashshot",
+        "speed"
+      ]
+    },
+    {
+      "stage": 4,
+      "id": "thread",
+      "offered": [
+        "thread",
+        "echopower",
+        "dashshot"
+      ]
+    },
+    {
+      "stage": 6,
+      "id": "burst",
+      "offered": [
+        "burst",
+        "refund",
+        "echopower"
+      ]
+    },
+    {
+      "stage": 7,
+      "id": "burst",
+      "offered": [
+        "burst",
+        "resonance",
+        "dashthread"
+      ]
+    },
+    {
+      "stage": 8,
+      "id": "thread",
+      "offered": [
+        "thread",
+        "burst",
+        "salvage"
+      ]
+    },
+    {
+      "stage": 9,
+      "id": "damage",
+      "offered": [
+        "damage",
+        "dashthread",
+        "refund"
+      ]
+    },
+    {
+      "stage": 11,
+      "id": "resonance",
+      "offered": [
+        "resonance",
+        "refund",
+        "salvage"
+      ]
+    },
+    {
+      "stage": 12,
+      "id": "suture",
+      "offered": [
+        "suture",
+        "crit",
+        "dashshot"
+      ]
+    },
+    {
+      "stage": 14,
+      "id": "damage",
+      "offered": [
+        "damage",
+        "wide",
+        "cascade"
+      ]
+    },
+    {
+      "stage": 15,
+      "id": "quickecho",
+      "offered": [
+        "quickecho",
+        "dashshot",
+        "dash"
+      ]
+    },
+    {
+      "stage": 16,
+      "id": "duration",
+      "offered": [
+        "duration",
+        "rapid",
+        "dashshot"
+      ]
+    },
+    {
+      "stage": 17,
+      "id": "quickecho",
+      "offered": [
+        "quickecho",
+        "wide",
+        "dashthread"
+      ]
+    },
+    {
+      "stage": 19,
+      "id": "damage",
+      "offered": [
+        "damage",
+        "burst",
+        "shield"
+      ]
+    },
+    {
+      "stage": 20,
+      "id": "damage",
+      "offered": [
+        "damage",
+        "dashthread",
+        "dashshot"
+      ]
+    },
+    {
+      "stage": 22,
+      "id": "wide",
+      "offered": [
+        "wide",
+        "pierce",
+        "speed"
+      ]
+    }
+  ],
+  "rerolls": [
+    {
+      "stage": 4,
+      "cost": 12,
+      "scrapBefore": 111,
+      "scrapAfter": 99,
+      "roll": 1,
+      "before": [
+        "echopower",
+        "dashshot",
+        "dashthread"
+      ],
+      "after": [
+        "echopower",
+        "duration",
+        "crit"
+      ],
+      "desired": [
+        "triangle",
+        "thread",
+        "suture"
+      ]
+    },
+    {
+      "stage": 4,
+      "cost": 20,
+      "scrapBefore": 99,
+      "scrapAfter": 79,
+      "roll": 2,
+      "before": [
+        "echopower",
+        "duration",
+        "crit"
+      ],
+      "after": [
+        "echopower",
+        "dashshot",
+        "thread"
+      ],
+      "desired": [
+        "triangle",
+        "thread",
+        "suture"
+      ]
+    },
+    {
+      "stage": 6,
+      "cost": 12,
+      "scrapBefore": 74,
+      "scrapAfter": 62,
+      "roll": 1,
+      "before": [
+        "refund",
+        "health",
+        "crit"
+      ],
+      "after": [
+        "refund",
+        "dashshot",
+        "resonance"
+      ],
+      "desired": [
+        "thread",
+        "suture",
+        "damage"
+      ]
+    },
+    {
+      "stage": 6,
+      "cost": 20,
+      "scrapBefore": 62,
+      "scrapAfter": 42,
+      "roll": 2,
+      "before": [
+        "refund",
+        "dashshot",
+        "resonance"
+      ],
+      "after": [
+        "refund",
+        "echopower",
+        "burst"
+      ],
+      "desired": [
+        "thread",
+        "suture",
+        "damage"
+      ]
+    },
+    {
+      "stage": 7,
+      "cost": 12,
+      "scrapBefore": 77,
+      "scrapAfter": 65,
+      "roll": 1,
+      "before": [
+        "cascade",
+        "wide",
+        "dashthread"
+      ],
+      "after": [
+        "shield",
+        "crit",
+        "health"
+      ],
+      "desired": [
+        "thread",
+        "suture",
+        "damage"
+      ]
+    },
+    {
+      "stage": 7,
+      "cost": 20,
+      "scrapBefore": 65,
+      "scrapAfter": 45,
+      "roll": 2,
+      "before": [
+        "shield",
+        "crit",
+        "health"
+      ],
+      "after": [
+        "resonance",
+        "burst",
+        "dashthread"
+      ],
+      "desired": [
+        "thread",
+        "suture",
+        "damage"
+      ]
+    },
+    {
+      "stage": 8,
+      "cost": 12,
+      "scrapBefore": 97,
+      "scrapAfter": 85,
+      "roll": 1,
+      "before": [
+        "burst",
+        "shield",
+        "pierce"
+      ],
+      "after": [
+        "burst",
+        "salvage",
+        "thread"
+      ],
+      "desired": [
+        "thread",
+        "suture",
+        "damage"
+      ]
+    },
+    {
+      "stage": 9,
+      "cost": 12,
+      "scrapBefore": 136,
+      "scrapAfter": 124,
+      "roll": 1,
+      "before": [
+        "dashthread",
+        "dash",
+        "speed"
+      ],
+      "after": [
+        "dashthread",
+        "shield",
+        "health"
+      ],
+      "desired": [
+        "thread",
+        "suture",
+        "damage"
+      ]
+    },
+    {
+      "stage": 9,
+      "cost": 20,
+      "scrapBefore": 124,
+      "scrapAfter": 104,
+      "roll": 2,
+      "before": [
+        "dashthread",
+        "shield",
+        "health"
+      ],
+      "after": [
+        "dashthread",
+        "refund",
+        "damage"
+      ],
+      "desired": [
+        "thread",
+        "suture",
+        "damage"
+      ]
+    },
+    {
+      "stage": 11,
+      "cost": 12,
+      "scrapBefore": 153,
+      "scrapAfter": 141,
+      "roll": 1,
+      "before": [
+        "resonance",
+        "quickecho",
+        "cascade"
+      ],
+      "after": [
+        "resonance",
+        "wide",
+        "health"
+      ],
+      "desired": [
+        "thread",
+        "suture",
+        "damage"
+      ]
+    },
+    {
+      "stage": 11,
+      "cost": 20,
+      "scrapBefore": 141,
+      "scrapAfter": 121,
+      "roll": 2,
+      "before": [
+        "resonance",
+        "wide",
+        "health"
+      ],
+      "after": [
+        "resonance",
+        "refund",
+        "salvage"
+      ],
+      "desired": [
+        "thread",
+        "suture",
+        "damage"
+      ]
+    },
+    {
+      "stage": 12,
+      "cost": 12,
+      "scrapBefore": 182,
+      "scrapAfter": 170,
+      "roll": 1,
+      "before": [
+        "crit",
+        "quickecho",
+        "dashthread"
+      ],
+      "after": [
+        "crit",
+        "dashshot",
+        "suture"
+      ],
+      "desired": [
+        "thread",
+        "suture",
+        "damage"
+      ]
+    },
+    {
+      "stage": 14,
+      "cost": 12,
+      "scrapBefore": 260,
+      "scrapAfter": 248,
+      "roll": 1,
+      "before": [
+        "refund",
+        "wide",
+        "salvage"
+      ],
+      "after": [
+        "cascade",
+        "wide",
+        "damage"
+      ],
+      "desired": [
+        "thread",
+        "damage",
+        "quickecho"
+      ]
+    },
+    {
+      "stage": 15,
+      "cost": 12,
+      "scrapBefore": 297,
+      "scrapAfter": 285,
+      "roll": 1,
+      "before": [
+        "refund",
+        "rapid",
+        "health"
+      ],
+      "after": [
+        "dashshot",
+        "dash",
+        "quickecho"
+      ],
+      "desired": [
+        "thread",
+        "damage",
+        "quickecho"
+      ]
+    },
+    {
+      "stage": 16,
+      "cost": 12,
+      "scrapBefore": 351,
+      "scrapAfter": 339,
+      "roll": 1,
+      "before": [
+        "dashshot",
+        "echopower",
+        "rapid"
+      ],
+      "after": [
+        "dashshot",
+        "shield",
+        "dash"
+      ],
+      "desired": [
+        "thread",
+        "damage",
+        "quickecho"
+      ]
+    },
+    {
+      "stage": 16,
+      "cost": 20,
+      "scrapBefore": 339,
+      "scrapAfter": 319,
+      "roll": 2,
+      "before": [
+        "dashshot",
+        "shield",
+        "dash"
+      ],
+      "after": [
+        "dashshot",
+        "duration",
+        "rapid"
+      ],
+      "desired": [
+        "thread",
+        "damage",
+        "quickecho"
+      ]
+    },
+    {
+      "stage": 22,
+      "cost": 12,
+      "scrapBefore": 644,
+      "scrapAfter": 632,
+      "roll": 1,
+      "before": [
+        "cascade",
+        "wide",
+        "salvage"
+      ],
+      "after": [
+        "dashshot",
+        "wide",
+        "rapid"
+      ],
+      "desired": [
+        "thread",
+        "quickecho",
+        "duration"
+      ]
+    },
+    {
+      "stage": 22,
+      "cost": 20,
+      "scrapBefore": 632,
+      "scrapAfter": 612,
+      "roll": 2,
+      "before": [
+        "dashshot",
+        "wide",
+        "rapid"
+      ],
+      "after": [
+        "pierce",
+        "wide",
+        "speed"
+      ],
+      "desired": [
+        "thread",
+        "quickecho",
+        "duration"
+      ]
+    }
+  ],
+  "trades": [
+    {
+      "stage": 5,
+      "type": "heal",
+      "cost": 20,
+      "scrapBefore": 79,
+      "scrapAfter": 59,
+      "hpBefore": 92,
+      "hpAfter": 100
+    },
+    {
+      "stage": 5,
+      "type": "fragment",
+      "id": "triangle",
+      "cost": 45,
+      "scrapBefore": 59,
+      "scrapAfter": 14,
+      "rank": 1,
+      "stock": [
+        "triangle",
+        "speed",
+        "dashthread"
+      ]
+    }
+  ],
+  "campChoices": [
+    {
+      "stage": 2,
+      "route": "rest",
+      "stock": [
+        {
+          "id": "suture",
+          "price": 45
+        },
+        {
+          "id": "rapid",
+          "price": 30
+        },
+        {
+          "id": "dashshot",
+          "price": 45
+        }
+      ],
+      "desired": [
+        "double",
+        "triangle",
+        "thread"
+      ],
+      "healBudget": 20,
+      "reserve": 12,
+      "scrap": 47,
+      "hp": 92
+    },
+    {
+      "stage": 5,
+      "route": "salvage",
+      "stock": [
+        {
+          "id": "triangle",
+          "price": 45
+        },
+        {
+          "id": "speed",
+          "price": 30
+        },
+        {
+          "id": "dashthread",
+          "price": 45
+        }
+      ],
+      "desired": [
+        "triangle",
+        "thread",
+        "suture"
+      ],
+      "healBudget": 20,
+      "reserve": 12,
+      "scrap": 79,
+      "hp": 92
+    },
+    {
+      "stage": 10,
+      "route": "rest",
+      "stock": [
+        {
+          "id": "shield",
+          "price": 45
+        },
+        {
+          "id": "dashthread",
+          "price": 45
+        },
+        {
+          "id": "cascade",
+          "price": 45
+        }
+      ],
+      "desired": [
+        "thread",
+        "suture",
+        "damage"
+      ],
+      "healBudget": 20,
+      "reserve": 12,
+      "scrap": 104,
+      "hp": 93
+    },
+    {
+      "stage": 13,
+      "route": "rest",
+      "stock": [
+        {
+          "id": "burst",
+          "price": 30
+        },
+        {
+          "id": "salvage",
+          "price": 30
+        },
+        {
+          "id": "rapid",
+          "price": 30
+        }
+      ],
+      "desired": [
+        "thread",
+        "damage",
+        "quickecho"
+      ],
+      "healBudget": 20,
+      "reserve": 12,
+      "scrap": 170,
+      "hp": 81
+    },
+    {
+      "stage": 18,
+      "route": "rest",
+      "stock": [
+        {
+          "id": "health",
+          "price": 30
+        },
+        {
+          "id": "duration",
+          "price": 30
+        },
+        {
+          "id": "crit",
+          "price": 30
+        }
+      ],
+      "desired": [
+        "thread",
+        "damage",
+        "quickecho"
+      ],
+      "healBudget": 20,
+      "reserve": 12,
+      "scrap": 383,
+      "hp": 90
+    },
+    {
+      "stage": 21,
+      "route": "rest",
+      "stock": [
+        {
+          "id": "crit",
+          "price": 30
+        },
+        {
+          "id": "wide",
+          "price": 30
+        },
+        {
+          "id": "burst",
+          "price": 30
+        }
+      ],
+      "desired": [
+        "thread",
+        "quickecho",
+        "duration"
+      ],
+      "healBudget": 20,
+      "reserve": 12,
+      "scrap": 530,
+      "hp": 90
+    }
+  ],
+  "traderPolicy": "Choose the trader when its advertised inventory has a top-three still-eligible build fragment, with enough scrap to heal fully and retain one reroll fee (12); otherwise rest. Buy needed recovery and desired available fragments through public buttons.",
+  "rerollPolicy": "Seek one of the top three still-eligible build fragments, at most two public button clicks per room, retain 20 scrap for a trader heal.",
+  "forecasts": [
+    {
+      "stage": 1,
+      "route": "loom",
+      "promised": "thread",
+      "name": "光糸を結ぶ織室",
+      "total": 7,
+      "traderStock": null,
+      "rewardIds": [
+        "thread",
+        "double",
+        "salvage"
+      ],
+      "promiseKept": true
+    },
+    {
+      "stage": 2,
+      "route": "rest",
+      "promised": null,
+      "name": "潮待ちの宿",
+      "total": null,
+      "traderStock": null
+    },
+    {
+      "stage": 3,
+      "route": "loom",
+      "promised": "dashshot",
+      "name": "足跡を織る織室",
+      "total": 8,
+      "traderStock": null,
+      "rewardIds": [
+        "dashshot",
+        "double",
+        "speed"
+      ],
+      "promiseKept": true
+    },
+    {
+      "stage": 4,
+      "route": "loom",
+      "promised": "echopower",
+      "name": "昨日を重ねる織室",
+      "total": 9,
+      "traderStock": null,
+      "rewardIds": [
+        "echopower",
+        "dashshot",
+        "thread"
+      ],
+      "promiseKept": true
+    },
+    {
+      "stage": 5,
+      "route": "salvage",
+      "promised": null,
+      "name": "沈船の宝庫",
+      "total": null,
+      "traderStock": [
+        "triangle",
+        "speed",
+        "dashthread"
+      ],
+      "traderStockKept": true
+    },
+    {
+      "stage": 6,
+      "route": "loom",
+      "promised": "refund",
+      "name": "星をほどく織室",
+      "total": 14,
+      "traderStock": null,
+      "rewardIds": [
+        "refund",
+        "echopower",
+        "burst"
+      ],
+      "promiseKept": true
+    },
+    {
+      "stage": 7,
+      "route": "loom",
+      "promised": null,
+      "name": "舟守、ノア",
+      "total": 1,
+      "traderStock": null
+    },
+    {
+      "stage": 8,
+      "route": "loom",
+      "promised": "burst",
+      "name": "星をほどく織室",
+      "total": 10,
+      "traderStock": null,
+      "rewardIds": [
+        "burst",
+        "salvage",
+        "thread"
+      ],
+      "promiseKept": true
+    },
+    {
+      "stage": 9,
+      "route": "loom",
+      "promised": "dashthread",
+      "name": "足跡を織る織室",
+      "total": 10,
+      "traderStock": null,
+      "rewardIds": [
+        "dashthread",
+        "refund",
+        "damage"
+      ],
+      "promiseKept": true
+    },
+    {
+      "stage": 10,
+      "route": "rest",
+      "promised": null,
+      "name": "潮待ちの宿",
+      "total": null,
+      "traderStock": null
+    },
+    {
+      "stage": 11,
+      "route": "loom",
+      "promised": "resonance",
+      "name": "昨日を重ねる織室",
+      "total": 11,
+      "traderStock": null,
+      "rewardIds": [
+        "resonance",
+        "refund",
+        "salvage"
+      ],
+      "promiseKept": true
+    },
+    {
+      "stage": 12,
+      "route": "loom",
+      "promised": "crit",
+      "name": "針を研ぐ織室",
+      "total": 12,
+      "traderStock": null,
+      "rewardIds": [
+        "crit",
+        "dashshot",
+        "suture"
+      ],
+      "promiseKept": true
+    },
+    {
+      "stage": 13,
+      "route": "rest",
+      "promised": null,
+      "name": "潮待ちの宿",
+      "total": null,
+      "traderStock": null
+    },
+    {
+      "stage": 14,
+      "route": "loom",
+      "promised": "wide",
+      "name": "光糸を結ぶ織室",
+      "total": 17,
+      "traderStock": null,
+      "rewardIds": [
+        "cascade",
+        "wide",
+        "damage"
+      ],
+      "promiseKept": true
+    },
+    {
+      "stage": 15,
+      "route": "loom",
+      "promised": null,
+      "name": "花守、イリス",
+      "total": 1,
+      "traderStock": null
+    },
+    {
+      "stage": 16,
+      "route": "loom",
+      "promised": "dashshot",
+      "name": "足跡を織る織室",
+      "total": 13,
+      "traderStock": null,
+      "rewardIds": [
+        "dashshot",
+        "duration",
+        "rapid"
+      ],
+      "promiseKept": true
+    },
+    {
+      "stage": 17,
+      "route": "loom",
+      "promised": "quickecho",
+      "name": "昨日を重ねる織室",
+      "total": 13,
+      "traderStock": null,
+      "rewardIds": [
+        "quickecho",
+        "wide",
+        "dashthread"
+      ],
+      "promiseKept": true
+    },
+    {
+      "stage": 18,
+      "route": "rest",
+      "promised": null,
+      "name": "潮待ちの宿",
+      "total": null,
+      "traderStock": null
+    },
+    {
+      "stage": 19,
+      "route": "loom",
+      "promised": "burst",
+      "name": "星をほどく織室",
+      "total": 14,
+      "traderStock": null,
+      "rewardIds": [
+        "burst",
+        "damage",
+        "shield"
+      ],
+      "promiseKept": true
+    },
+    {
+      "stage": 20,
+      "route": "loom",
+      "promised": "damage",
+      "name": "針を研ぐ織室",
+      "total": 15,
+      "traderStock": null,
+      "rewardIds": [
+        "damage",
+        "dashthread",
+        "dashshot"
+      ],
+      "promiseKept": true
+    },
+    {
+      "stage": 21,
+      "route": "rest",
+      "promised": null,
+      "name": "潮待ちの宿",
+      "total": null,
+      "traderStock": null
+    },
+    {
+      "stage": 22,
+      "route": "loom",
+      "promised": "wide",
+      "name": "光糸を結ぶ織室",
+      "total": 20,
+      "traderStock": null,
+      "rewardIds": [
+        "pierce",
+        "wide",
+        "speed"
+      ],
+      "promiseKept": true
+    },
+    {
+      "stage": 23,
+      "route": "loom",
+      "promised": null,
+      "name": "灯台の心臓",
+      "total": 1,
+      "traderStock": null
+    }
+  ],
+  "stolen": [
+    {
+      "stage": 8,
+      "gameSeconds": 102.99999999999544,
+      "phase": "warning",
+      "age": 0.06666666666666667,
+      "frames": 216,
+      "hit": false
+    },
+    {
+      "stage": 8,
+      "gameSeconds": 103.89999999999539,
+      "phase": "active",
+      "age": 0.966666666666668,
+      "frames": 216,
+      "hit": false
+    },
+    {
+      "stage": 9,
+      "gameSeconds": 134.83333333333277,
+      "phase": "warning",
+      "age": 0.016666666666666666,
+      "frames": 216,
+      "hit": false
+    },
+    {
+      "stage": 9,
+      "gameSeconds": 135.85000000000025,
+      "phase": "active",
+      "age": 1.0333333333333345,
+      "frames": 216,
+      "hit": false
+    },
+    {
+      "stage": 11,
+      "gameSeconds": 166.08333333335764,
+      "phase": "warning",
+      "age": 0.016666666666666666,
+      "frames": 216,
+      "hit": false
+    },
+    {
+      "stage": 11,
+      "gameSeconds": 167.10000000002512,
+      "phase": "active",
+      "age": 1.0333333333333345,
+      "frames": 216,
+      "hit": false
+    },
+    {
+      "stage": 12,
+      "gameSeconds": 194.25000000004673,
+      "phase": "warning",
+      "age": 0.09999999999999999,
+      "frames": 216,
+      "hit": false
+    },
+    {
+      "stage": 12,
+      "gameSeconds": 195.16666666671412,
+      "phase": "active",
+      "age": 1.016666666666668,
+      "frames": 216,
+      "hit": false
+    },
+    {
+      "stage": 14,
+      "gameSeconds": 219.13333333339986,
+      "phase": "warning",
+      "age": 0.11666666666666665,
+      "frames": 216,
+      "hit": false
+    },
+    {
+      "stage": 14,
+      "gameSeconds": 220.03333333340058,
+      "phase": "active",
+      "age": 1.016666666666668,
+      "frames": 216,
+      "hit": false
+    },
+    {
+      "stage": 19,
+      "gameSeconds": 304.0666666667188,
+      "phase": "warning",
+      "age": 0.11666666666666665,
+      "frames": 203,
+      "hit": false
+    },
+    {
+      "stage": 19,
+      "gameSeconds": 316.3666666667076,
+      "phase": "active",
+      "age": 1.0500000000000012,
+      "frames": 216,
+      "hit": false
+    },
+    {
+      "stage": 22,
+      "gameSeconds": 354.56666666667286,
+      "phase": "warning",
+      "age": 0.06666666666666667,
+      "frames": 216,
+      "hit": false
+    },
+    {
+      "stage": 22,
+      "gameSeconds": 355.46666666667204,
+      "phase": "active",
+      "age": 0.966666666666668,
+      "frames": 216,
+      "hit": false
+    }
+  ],
+  "commands": {
+    "echo": 102,
+    "dash": 28,
+    "release": 45
+  },
+  "samples": [
+    {
+      "wallSeconds": 0,
+      "stage": 0,
+      "hp": 100,
+      "gameSeconds": 0,
+      "audio": {
+        "time": 0.17066666666666666,
+        "voices": 8,
+        "track": "harbor"
+      },
+      "counts": {
+        "enemies": 0,
+        "bullets": 0,
+        "particles": 0,
+        "echoes": 0,
+        "stolenEchoes": 0,
+        "fragments": 0
+      }
+    },
+    {
+      "wallSeconds": 30.1,
+      "stage": 3,
+      "hp": 100,
+      "gameSeconds": 29.2,
+      "audio": {
+        "time": 30.234666666666666,
+        "voices": 16,
+        "track": "harbor"
+      },
+      "counts": {
+        "enemies": 3,
+        "bullets": 6,
+        "particles": 31,
+        "echoes": 2,
+        "stolenEchoes": 0,
+        "fragments": 0
+      }
+    },
+    {
+      "wallSeconds": 60.2,
+      "stage": 5,
+      "hp": 100,
+      "gameSeconds": 58.6,
+      "audio": {
+        "time": 60.346666666666664,
+        "voices": 8,
+        "track": "harbor"
+      },
+      "counts": {
+        "enemies": 0,
+        "bullets": 0,
+        "particles": 0,
+        "echoes": 0,
+        "stolenEchoes": 0,
+        "fragments": 0
+      }
+    },
+    {
+      "wallSeconds": 90.3,
+      "stage": 7,
+      "hp": 100,
+      "gameSeconds": 88.1,
+      "audio": {
+        "time": 90.42666666666666,
+        "voices": 9,
+        "track": "harbor"
+      },
+      "counts": {
+        "enemies": 1,
+        "bullets": 7,
+        "particles": 4,
+        "echoes": 1,
+        "stolenEchoes": 0,
+        "fragments": 0
+      }
+    },
+    {
+      "wallSeconds": 120.3,
+      "stage": 8,
+      "hp": 100,
+      "gameSeconds": 117.8,
+      "audio": {
+        "time": 120.45866666666667,
+        "voices": 13,
+        "track": "garden"
+      },
+      "counts": {
+        "enemies": 2,
+        "bullets": 0,
+        "particles": 3,
+        "echoes": 0,
+        "stolenEchoes": 1,
+        "fragments": 0
+      }
+    },
+    {
+      "wallSeconds": 150.3,
+      "stage": 9,
+      "hp": 93,
+      "gameSeconds": 147.7,
+      "audio": {
+        "time": 150.50666666666666,
+        "voices": 14,
+        "track": "garden"
+      },
+      "counts": {
+        "enemies": 1,
+        "bullets": 7,
+        "particles": 17,
+        "echoes": 1,
+        "stolenEchoes": 0,
+        "fragments": 0
+      }
+    },
+    {
+      "wallSeconds": 180.4,
+      "stage": 11,
+      "hp": 88,
+      "gameSeconds": 176.9,
+      "audio": {
+        "time": 180.51733333333334,
+        "voices": 27,
+        "track": "garden"
+      },
+      "counts": {
+        "enemies": 0,
+        "bullets": 0,
+        "particles": 11,
+        "echoes": 0,
+        "stolenEchoes": 0,
+        "fragments": 0
+      }
+    },
+    {
+      "wallSeconds": 210.5,
+      "stage": 13,
+      "hp": 100,
+      "gameSeconds": 206.4,
+      "audio": {
+        "time": 210.64533333333333,
+        "voices": 10,
+        "track": "garden"
+      },
+      "counts": {
+        "enemies": 0,
+        "bullets": 0,
+        "particles": 0,
+        "echoes": 0,
+        "stolenEchoes": 0,
+        "fragments": 0
+      }
+    },
+    {
+      "wallSeconds": 240.5,
+      "stage": 14,
+      "hp": 100,
+      "gameSeconds": 236.3,
+      "audio": {
+        "time": 240.69866666666667,
+        "voices": 12,
+        "track": "garden"
+      },
+      "counts": {
+        "enemies": 1,
+        "bullets": 0,
+        "particles": 7,
+        "echoes": 0,
+        "stolenEchoes": 0,
+        "fragments": 0
+      }
+    },
+    {
+      "wallSeconds": 270.7,
+      "stage": 16,
+      "hp": 100,
+      "gameSeconds": 265.8,
+      "audio": {
+        "time": 270.8106666666667,
+        "voices": 16,
+        "track": "furnace"
+      },
+      "counts": {
+        "enemies": 6,
+        "bullets": 5,
+        "particles": 6,
+        "echoes": 1,
+        "stolenEchoes": 0,
+        "fragments": 0
+      }
+    },
+    {
+      "wallSeconds": 300.7,
+      "stage": 17,
+      "hp": 90,
+      "gameSeconds": 295.5,
+      "audio": {
+        "time": 300.82666666666665,
+        "voices": 8,
+        "track": "furnace"
+      },
+      "counts": {
+        "enemies": 2,
+        "bullets": 3,
+        "particles": 11,
+        "echoes": 0,
+        "stolenEchoes": 0,
+        "fragments": 0
+      }
+    },
+    {
+      "wallSeconds": 330.7,
+      "stage": 20,
+      "hp": 88,
+      "gameSeconds": 324.7,
+      "audio": {
+        "time": 330.83733333333333,
+        "voices": 11,
+        "track": "furnace"
+      },
+      "counts": {
+        "enemies": 2,
+        "bullets": 12,
+        "particles": 29,
+        "echoes": 3,
+        "stolenEchoes": 0,
+        "fragments": 0
+      }
+    },
+    {
+      "wallSeconds": 360.8,
+      "stage": 22,
+      "hp": 100,
+      "gameSeconds": 354.3,
+      "audio": {
+        "time": 360.9173333333333,
+        "voices": 11,
+        "track": "furnace"
+      },
+      "counts": {
+        "enemies": 6,
+        "bullets": 1,
+        "particles": 19,
+        "echoes": 0,
+        "stolenEchoes": 0,
+        "fragments": 0
+      }
+    },
+    {
+      "wallSeconds": 390.9,
+      "stage": 22,
+      "hp": 100,
+      "gameSeconds": 384.2,
+      "audio": {
+        "time": 391.024,
+        "voices": 12,
+        "track": "furnace"
+      },
+      "counts": {
+        "enemies": 0,
+        "bullets": 0,
+        "particles": 1,
+        "echoes": 0,
+        "stolenEchoes": 0,
+        "fragments": 0
+      }
+    }
+  ],
+  "beforeHeap": {
+    "usedSize": 3633200,
+    "totalSize": 4292608,
+    "embedderHeapUsedSize": 899480,
+    "backingStorageSize": 3229549
+  },
+  "afterHeap": {
+    "usedSize": 5616792,
+    "totalSize": 6963200,
+    "embedderHeapUsedSize": 1740896,
+    "backingStorageSize": 3257236
+  },
+  "errors": []
+}

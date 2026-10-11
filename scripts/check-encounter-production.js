@@ -1,11 +1,16 @@
+import { productionURL } from "./browser-url.js";
+import {
+  observationDirectory,
+  observationInputPath,
+} from "./observation-files.js";
 import { chromium } from "@playwright/test";
 import assert from "node:assert/strict";
 import { readFile, writeFile } from "node:fs/promises";
 import { SAVE_KEY, prepareImport } from "../src/save.js";
 
-const assets = ".mdxr/20261007195700-echo-loom/assets";
+const assets = observationDirectory;
 const sourceArtifact = "encounter-entry-tactics-weaving-17.json";
-const bytes = await readFile(`${assets}/${sourceArtifact}`);
+const bytes = await readFile(await observationInputPath(`${sourceArtifact}`));
 const initial = prepareImport(bytes.toString()).profile;
 assert.equal(initial.run.stage, 17);
 assert.equal(initial.run.encounterVersion, 1);
@@ -44,7 +49,7 @@ try {
       }
     };
   });
-  await page.goto("http://127.0.0.1:4173/");
+  await page.goto(productionURL);
   await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
   await context.setOffline(true);
   await page.reload();

@@ -266,11 +266,15 @@ export function loadState(storage = null) {
     let profile = null;
     try {
       profile = storedProfile(text);
-    } catch {}
+    } catch {
+      // A malformed main record may still have a readable recovery copy.
+    }
     if (profile) return { profile, source: "main" };
     try {
       profile = storedProfile(store.getItem(RECOVERY_KEY));
-    } catch {}
+    } catch {
+      // A missing or malformed recovery copy leaves a fresh profile.
+    }
     if (profile) return { profile, source: "recovery" };
     return { profile: freshProfile(), source: text ? "damaged" : "fresh" };
   } catch {
@@ -288,17 +292,23 @@ export function saveProfile(profile, storage = null) {
     try {
       const text = store.getItem(SAVE_KEY);
       if (storedProfile(text)) previous = text;
-    } catch {}
+    } catch {
+      // Reads may be unavailable even when writing the new record succeeds.
+    }
     // A failed spare copy must never prevent saving the current voyage.
     if (previous && previous !== next)
       try {
         store.setItem(RECOVERY_KEY, previous);
-      } catch {}
+      } catch {
+        // Recovery is best effort; the main record takes priority.
+      }
     store.setItem(SAVE_KEY, next);
     if (!previous)
       try {
         store.setItem(RECOVERY_KEY, next);
-      } catch {}
+      } catch {
+        // The first main record is already safe even without a spare copy.
+      }
     return true;
   } catch {
     return false;
@@ -363,7 +373,9 @@ export function saveImportedProfile(next, current, storage = null) {
       JSON.stringify(current),
     );
     backupSaved = true;
-  } catch {}
+  } catch {
+    // Import can proceed without undo; callers display backupSaved to the user.
+  }
   return { saved: saveProfile(next, storage), backupSaved };
 }
 

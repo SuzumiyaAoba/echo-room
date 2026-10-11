@@ -1,3 +1,4 @@
+import { developmentURL } from "./browser-url.js";
 import { chromium } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 
@@ -155,20 +156,21 @@ export async function observeLayoutArt(page) {
 }
 
 if (process.argv[1]?.endsWith("observe-layouts.js")) {
+  const { observationPath } = await import("./observation-files.js");
   const browser = await chromium.launch();
   try {
     const page = await browser.newPage();
     const errors = [];
     page.on("pageerror", (e) => errors.push(e.message));
-    await page.goto("http://127.0.0.1:5173/");
+    await page.goto(developmentURL);
     const result = await observeLayoutArt(page);
     for (let i = 0; i < result.sheets.length; i++)
       await writeFile(
-        `/tmp/echo-layouts-sheet-${i}.png`,
+        observationPath(`echo-layouts-sheet-${i}.png`),
         Buffer.from(result.sheets[i].split(",")[1], "base64"),
       );
     await writeFile(
-      "/tmp/echo-layouts-art.json",
+      observationPath("echo-layouts-art.json"),
       JSON.stringify(
         {
           scope:

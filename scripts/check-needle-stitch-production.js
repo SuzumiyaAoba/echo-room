@@ -1,3 +1,8 @@
+import { productionURL } from "./browser-url.js";
+import {
+  observationDirectory,
+  observationInputPath,
+} from "./observation-files.js";
 import { chromium } from "@playwright/test";
 import assert from "node:assert/strict";
 import { readFile, writeFile } from "node:fs/promises";
@@ -7,12 +12,15 @@ import { SAVE_KEY, prepareImport } from "../src/save.js";
 const artifact = process.argv[2] || "needle-stitch-shooting";
 if (!/^[a-z0-9-]+$/.test(artifact))
   throw new Error("Expected a plain artifact name");
-const destination = ".mdxr/20261007195700-echo-loom/assets";
+const destination = observationDirectory;
 const sourceArtifact = `memory-ward-arrival-${artifact}.json`;
-const record = await readFile(`${destination}/${sourceArtifact}`);
+const record = await readFile(await observationInputPath(`${sourceArtifact}`));
 const initial = prepareImport(record.toString()).profile;
 const provenance = JSON.parse(
-  await readFile(`${destination}/expedition-${artifact}.json`, "utf8"),
+  await readFile(
+    await observationInputPath(`expedition-${artifact}.json`),
+    "utf8",
+  ),
 );
 assert.equal(provenance.outcome, "victory");
 assert.equal(provenance.stages.length, 24);
@@ -155,7 +163,7 @@ try {
       }
     };
   });
-  await page.goto("http://127.0.0.1:4173/");
+  await page.goto(productionURL);
   await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
   await context.setOffline(true);
   await page.reload();

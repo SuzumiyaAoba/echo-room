@@ -1,3 +1,4 @@
+import { artifactPath } from "./artifacts.js";
 import { test, expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 import { freshProfile, SAVE_KEY } from "../../src/save.js";
@@ -109,7 +110,7 @@ test("公開の録画とQ：始点・道・射撃が実際の再生に一致し�
   expect(recording.recording.shots.length).toBeGreaterThan(0);
   expect(recording.hud).toBe(recording.label);
   await page.screenshot({
-    path: `/tmp/echo-recording-native-${browserName}.png`,
+    path: artifactPath(`echo-recording-native-${browserName}.png`),
   });
   await page.getByRole("button", { name: "操作と残響の使い方" }).click();
   await expect(page.locator("#recording-help")).toContainText(
@@ -156,7 +157,7 @@ test("公開の録画とQ：始点・道・射撃が実際の再生に一致し�
   expect(reopened.save).toBe(saved);
   expect(errors).toEqual([]);
   await writeFile(
-    `/tmp/echo-recording-native-${browserName}.json`,
+    artifactPath(`echo-recording-native-${browserName}.json`),
     JSON.stringify(
       {
         scope:
@@ -188,9 +189,7 @@ test("三地域と三武器：変化は実際の録画の周りだけで、敵�
     ] = await Promise.all([
       import("/src/game.js"),
       import("/src/render.js"),
-      import(
-        "/.mdxr/20261007195700-echo-loom/assets/rifts-recording-baseline-render.mjs"
-      ),
+      import("/tests/fixtures/reference/rifts-recording-baseline-render.mjs"),
       import("/src/math.js"),
     ]);
     const canvas = () => {
@@ -374,7 +373,7 @@ test("三地域と三武器：変化は実際の録画の周りだけで、敵�
   }, SAVE_KEY);
   expect(result.rows).toHaveLength(144);
   await writeFile(
-    `/tmp/echo-recording-pixels-${browserName}.json`,
+    artifactPath(`echo-recording-pixels-${browserName}.json`),
     JSON.stringify(
       {
         scope:
@@ -479,7 +478,7 @@ test("タッチのQと三サイズ：録画を読み、静かな整数画素と�
       };
     });
     await writeFile(
-      `/tmp/echo-recording-touch-${browserName}.json`,
+      artifactPath(`echo-recording-touch-${browserName}.json`),
       JSON.stringify(
         {
           scope:

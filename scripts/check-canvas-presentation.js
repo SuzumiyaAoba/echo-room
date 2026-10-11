@@ -1,15 +1,23 @@
+import { developmentURL } from "./browser-url.js";
+import {
+  observationDirectory,
+  observationInputPath,
+} from "./observation-files.js";
 import { chromium, firefox, webkit } from "@playwright/test";
 import { readFile, writeFile } from "node:fs/promises";
 import assert from "node:assert/strict";
 
-const destination = ".mdxr/20261007195700-echo-loom/assets";
+const destination = observationDirectory;
 const mode = process.argv[2] || "pixels";
 assert.ok(["pixels", "cost"].includes(mode));
 const sources = Object.fromEntries(
   await Promise.all(
     ["before", "prototype"].map(async (name) => [
       name,
-      await readFile(`${destination}/renderer-presentation-${name}.js`, "utf8"),
+      await readFile(
+        await observationInputPath(`renderer-presentation-${name}.js`),
+        "utf8",
+      ),
     ]),
   ),
 );
@@ -45,7 +53,7 @@ for (const [name, type] of Object.entries(
       const cdp = await page.context().newCDPSession(page);
       await cdp.send("Emulation.setCPUThrottlingRate", { rate: 4 });
     }
-    await page.goto("http://127.0.0.1:5173/");
+    await page.goto(developmentURL);
     const result = await page.evaluate(async (mode) => {
       const { Renderer: Before } = await import(
         "/src/render.js?presentation-before"

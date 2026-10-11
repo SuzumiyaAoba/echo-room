@@ -1,0 +1,3 @@
+# Frozen comparison sources and exported saves retain their original bytes.
+tests/fixtures/reference/
+tests/fixtures/observations/

@@ -1,3 +1,5 @@
+import { advanceWorldEffects } from "./world-effects.js";
+import { updatePlayer } from "./player-update.js";
 import {
   Random,
   clamp,
@@ -11,7 +13,6 @@ import {
   BIOMES,
   ENEMIES,
   WEAPONS,
-  UPGRADES,
   CATALOG_VERSION,
   catalogUpgrades,
   stats,
@@ -29,9 +30,9 @@ import {
 } from "./apparatus.js";
 import { updateBoss } from "./bosses.js";
 import { openMemoryWard, weaveMemoryWard } from "./memory-ward.js";
-import { advanceImpact, recordImpact } from "./combat-feedback.js";
+import { recordImpact } from "./combat-feedback.js";
 import { bulletImpactSource } from "./last-impact.js";
-import { advanceDefeats, recordDefeat } from "./defeat-weave.js";
+import { recordDefeat } from "./defeat-weave.js";
 import { selectStory } from "./story.js";
 import { rewardPlan, rewardRerollState } from "./rewards.js";
 import {
@@ -65,8 +66,12 @@ import {
 import { approachEnemy } from "./enemy-navigation.js";
 import { CHARGER_ATTACK, chargerHoldsLane } from "./charger-warning.js";
 import { SHIELD_GUARD } from "./shield-guard.js";
-import { echoPlaybackFrames, rewindsEchoes } from "./echo-playback.js";
-import { weavesBell, ringBell, advanceBell } from "./bell-weave.js";
+import {
+  echoPlaybackFrames,
+  rewindsEchoes,
+  updateEchoes,
+} from "./echo-playback.js";
+import { weavesBell, ringBell } from "./bell-weave.js";
 import {
   ENCOUNTER_VERSION,
   encounterPlan,
@@ -344,102 +349,12 @@ export class Game {
     return e;
   }
   update(dt, input = {}) {
-    this.t += dt;
-    advanceImpact(this, dt);
-    advanceDefeats(this, dt);
-    advanceBell(this, dt);
-    this.shake = Math.max(0, this.shake - dt * 18);
-    this.flash = Math.max(0, this.flash - dt * 3);
-    for (const p of this.particles) {
-      p.x += p.vx * dt;
-      p.y += p.vy * dt;
-      p.life -= dt;
-      p.vx *= 0.97;
-      p.vy *= 0.97;
-    }
-    this.particles = this.particles.filter((p) => p.life > 0);
-    for (const l of this.labels) {
-      l.y -= dt * 9;
-      l.life -= dt;
-    }
-    this.labels = this.labels.filter((l) => l.life > 0);
+    advanceWorldEffects(this, dt);
     if (!["combat", "cleared"].includes(this.mode)) return;
     this.roomTime += dt;
     this.run.time += dt;
-    const p = this.player,
-      s = this.stats;
-    for (const key of ["invulnerable", "dashCd", "echoCd", "fireCd", "dash"])
-      p[key] = Math.max(0, p[key] - dt);
-    if (p.echoCharges < s.echoes && p.echoCd === 0) {
-      p.echoCharges++;
-      if (p.echoCharges < s.echoes) p.echoCd = s.echoCooldown;
-    }
-    let mx = input.mx || 0,
-      my = input.my || 0;
-    const length = Math.hypot(mx, my);
-    if (length > 1) {
-      mx /= length;
-      my /= length;
-    }
-    if (length > 0.1) {
-      p.dx = mx / (length || 1);
-      p.dy = my / (length || 1);
-    }
-    if (Number.isFinite(input.angle)) p.angle = input.angle;
-    if (input.autoAim && this.enemies.length) {
-      const closest = this.enemies.reduce((a, b) =>
-        distance(a, p) < distance(b, p) ? a : b,
-      );
-      p.angle = angleTo(p, closest);
-    }
-    if (input.dash && p.dashCd === 0) this.dash(mx, my);
-    const beforeMove = { x: p.x, y: p.y };
-    this.dashThreadOrigin = p.dash > 0 ? beforeMove : null;
-    if (p.dash > 0) {
-      this.move(p, p.dashX * 290 * dt, p.dashY * 290 * dt);
-      if (Math.floor(this.t * 60) % 3 === 0)
-        this.effect(p.x, p.y, "dash", "#9ce8d3", 2);
-    } else this.move(p, mx * s.speed * dt, my * s.speed * dt);
-    const travelled = distance(beforeMove, p);
-    p.moving = travelled > 0.1;
-    p.walk += travelled / 6;
-    let fired = false;
-    if (input.fire && p.fireCd === 0 && this.mode === "combat") {
-      this.shoot(p, p.angle, false);
-      p.fireCd = this.weapon.rate / s.fireRate;
-      fired = true;
-    }
-    this.history.push({
-      x: p.x,
-      y: p.y,
-      angle: p.angle,
-      fire: fired,
-      walk: p.walk,
-      moving: p.moving,
-    });
-    if (this.history.length > 216) this.history.shift();
-    if (input.echo && p.echoCharges > 0 && this.history.length >= 24)
-      this.castEcho();
-    if (input.burst && this.echoes.length) this.release();
-    for (const e of this.echoes) {
-      e.elapsed += dt;
-      const idx = Math.min(
-        e.frames.length - 1,
-        Math.max(0, Math.floor(e.elapsed * 60 + 1e-6) - 1),
-      );
-      const f = e.frames[idx];
-      e.x = f.x;
-      e.y = f.y;
-      e.angle = f.angle;
-      e.walk = f.walk;
-      e.moving = e.elapsed < e.frames.length / 60 && f.moving;
-      for (let i = e.frame + 1; i <= idx; i++)
-        if (e.frames[i].fire) this.shoot(e, e.frames[i].angle, true);
-      e.frame = idx;
-    }
-    const expired = this.echoes.filter((e) => e.elapsed >= s.echoDuration);
-    for (const e of expired) this.effect(e.x, e.y, "echo", "#71decd", 10);
-    this.echoes = this.echoes.filter((e) => e.elapsed < s.echoDuration);
+    updatePlayer(this, dt, input);
+    updateEchoes(this, dt);
     while (this.spawnQueue[0]?.time <= this.roomTime) {
       const next = this.spawnQueue.shift();
       this.spawn(next.kind, next.x, next.y, next.elite);
@@ -477,6 +392,16 @@ export class Game {
       this.updateBullets(dt);
       this.updateHazards(dt);
     }
+    this.collectPickups(dt);
+    if (
+      input.interact &&
+      this.mode === "cleared" &&
+      distance(this.player, { x: 240, y: 43 }) < 32
+    )
+      this.onEvent("exit");
+  }
+  collectPickups(dt) {
+    const p = this.player;
     for (const item of this.pickups) {
       item.age += dt;
       if (distance(item, p) < (item.kind === "scrap" ? 45 : 13)) {
@@ -498,12 +423,6 @@ export class Game {
       }
     }
     this.pickups = this.pickups.filter((i) => !i.collected);
-    if (
-      input.interact &&
-      this.mode === "cleared" &&
-      distance(p, { x: 240, y: 43 }) < 32
-    )
-      this.onEvent("exit");
   }
   get weapon() {
     return WEAPONS.find((w) => w.id === this.run.weapon) || WEAPONS[0];

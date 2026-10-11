@@ -1,0 +1,110 @@
+{
+  "format": "echo-loom.backup",
+  "version": 1,
+  "createdAt": "2026-10-10T01:00:36.363Z",
+  "profile": {
+    "version": 1,
+    "memory": 133,
+    "attempts": 1,
+    "victories": 1,
+    "best": 24,
+    "totalKills": 184,
+    "unlocked": [
+      "needle",
+      "spool"
+    ],
+    "lore": [
+      "start",
+      "ferryman",
+      "gardener",
+      "heart"
+    ],
+    "seen": [
+      "damage",
+      "thread",
+      "burst",
+      "dash",
+      "homing",
+      "suture",
+      "echopower",
+      "salvage",
+      "dashshot",
+      "cascade",
+      "health",
+      "shield",
+      "counter",
+      "rapid",
+      "refund",
+      "dashthread",
+      "resonance",
+      "crit",
+      "duration",
+      "speed",
+      "double",
+      "triangle",
+      "pierce",
+      "wide",
+      "quickecho"
+    ],
+    "remembered": [
+      "keeper:ferryman",
+      "keeper:gardener",
+      "keeper:heart"
+    ],
+    "stories": [],
+    "endings": [
+      "dawn"
+    ],
+    "settings": {
+      "music": 0.35,
+      "effects": 0.6,
+      "shake": false,
+      "flashes": false,
+      "autoAim": true
+    },
+    "run": null,
+    "lastReturn": {
+      "version": 1,
+      "outcome": "victory",
+      "memory": 133,
+      "run": {
+        "seed": "NEEDLE-STITCH-WEAVING",
+        "weapon": "needle",
+        "relic": "spool",
+        "stage": 23,
+        "difficulty": 0,
+        "catalogVersion": 2,
+        "time": 433.51666666660105,
+        "damageTaken": 159,
+        "kills": 184,
+        "echoesCast": 91,
+        "threadKills": 15,
+        "threadCuts": 79,
+        "threadReturns": 28,
+        "cordCuts": 1,
+        "memoryCuts": 15,
+        "prismSplits": 0,
+        "needleStitches": 81,
+        "upgrades": {
+          "double": 2,
+          "duration": 1,
+          "quickecho": 3,
+          "thread": 3,
+          "triangle": 1,
+          "suture": 1,
+          "burst": 2,
+          "damage": 2,
+          "health": 2,
+          "counter": 1
+        },
+        "startingFragment": null
+      },
+      "light": {
+        "capacity": 3,
+        "chargeSeconds": 4,
+        "lifeSeconds": 5.8,
+        "playback": "forward"
+      }
+    }
+  }
+}

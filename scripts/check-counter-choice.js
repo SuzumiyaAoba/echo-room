@@ -1,10 +1,14 @@
+import {
+  observationDirectory,
+  observationInputPath,
+} from "./observation-files.js";
 import { readFile, writeFile } from "node:fs/promises";
 import assert from "node:assert/strict";
 import { simulate } from "./simulate.js";
 
-const destination = ".mdxr/20261007195700-echo-loom/assets";
+const destination = observationDirectory;
 const saved = JSON.parse(
-  await readFile(`${destination}/balance-counter.json`, "utf8"),
+  await readFile(await observationInputPath(`balance-counter.json`), "utf8"),
 );
 const expected = saved.rows.find(
   (r) =>

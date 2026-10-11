@@ -1,0 +1,92 @@
+{
+  "format": "echo-loom.backup",
+  "version": 1,
+  "createdAt": "2026-10-08T19:40:18.820Z",
+  "profile": {
+    "version": 1,
+    "memory": 0,
+    "attempts": 1,
+    "victories": 0,
+    "best": 0,
+    "totalKills": 0,
+    "unlocked": [
+      "needle",
+      "spool"
+    ],
+    "lore": [
+      "start"
+    ],
+    "seen": [
+      "crit",
+      "counter",
+      "refund"
+    ],
+    "remembered": [],
+    "stories": [],
+    "endings": [],
+    "settings": {
+      "music": 0.35,
+      "effects": 0.6,
+      "shake": true,
+      "flashes": true,
+      "autoAim": false
+    },
+    "run": {
+      "seed": "EXPEDITION-REROLL",
+      "catalogVersion": 2,
+      "stage": 0,
+      "weapon": "needle",
+      "relic": "spool",
+      "maxHp": 100,
+      "hp": 100,
+      "upgrades": {
+        "double": 0,
+        "duration": 0,
+        "quickecho": 0,
+        "echopower": 0,
+        "thread": 0,
+        "wide": 0,
+        "triangle": 0,
+        "suture": 0,
+        "burst": 0,
+        "refund": 0,
+        "cascade": 0,
+        "damage": 0,
+        "rapid": 0,
+        "pierce": 0,
+        "homing": 0,
+        "crit": 0,
+        "dash": 0,
+        "dashshot": 0,
+        "dashthread": 0,
+        "health": 0,
+        "shield": 0,
+        "speed": 0,
+        "salvage": 0,
+        "resonance": 0,
+        "counter": 1
+      },
+      "route": "loom",
+      "checkpoint": "cleared",
+      "bosses": [],
+      "scrap": 24,
+      "kills": 7,
+      "time": 11.316666666666809,
+      "memory": 0,
+      "damageTaken": 0,
+      "echoesCast": 2,
+      "threadKills": 0,
+      "cordCuts": 0,
+      "memoryCuts": 0,
+      "prismSplits": 0,
+      "threadCuts": 0,
+      "threadReturns": 0,
+      "beacons": [],
+      "repairs": [],
+      "difficulty": 0,
+      "journal": [],
+      "startingFragment": null,
+      "rewardRoll": 0
+    }
+  }
+}

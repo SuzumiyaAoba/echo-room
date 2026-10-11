@@ -1,3 +1,5 @@
+import { productionURL } from "./browser-url.js";
+import { observationPath } from "./observation-files.js";
 import { chromium } from "@playwright/test";
 import assert from "node:assert/strict";
 import { readFile, writeFile } from "node:fs/promises";
@@ -59,13 +61,13 @@ async function pause(kind) {
   assert.deepEqual(after, before);
   const png = await page.locator("#world").evaluate((c) => c.toDataURL());
   await writeFile(
-    `/tmp/echo-recording-offline-${kind}.png`,
+    observationPath(`echo-recording-offline-${kind}.png`),
     Buffer.from(png.split(",")[1], "base64"),
   );
   return { milliseconds: 350, exact: true, before, after };
 }
 try {
-  await page.goto("http://127.0.0.1:4173/");
+  await page.goto(productionURL);
   await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
   const cache = await page.evaluate(async () => {
     const names = await caches.keys();
@@ -107,7 +109,9 @@ try {
     assert.deepEqual(target, { width: 40, height: 40, hit: true, checked });
     targets.push({ id, ...target });
   }
-  await page.screenshot({ path: "/tmp/echo-recording-offline-settings.png" });
+  await page.screenshot({
+    path: observationPath("echo-recording-offline-settings.png"),
+  });
   await page.getByRole("button", { name: "設定を閉じる" }).click();
   await page.getByRole("button", { name: "灯りをともす" }).click();
   await page.locator("#seed").fill("RECORDING-OFFLINE");
@@ -162,7 +166,9 @@ try {
     assert.deepEqual(await read(), release.before);
     layouts.push({ viewport, ratio: box.width / box.height, exact: true });
     await page.screenshot({
-      path: `/tmp/echo-recording-offline-${viewport.width}x${viewport.height}.png`,
+      path: observationPath(
+        `echo-recording-offline-${viewport.width}x${viewport.height}.png`,
+      ),
     });
   }
   await page.getByRole("button", { name: "灯台へ戻る", exact: true }).click();
@@ -178,9 +184,12 @@ try {
     .getByRole("button", { name: "記録を書き出す", exact: true })
     .click();
   const download = await downloadPromise;
-  await download.saveAs("/tmp/echo-recording-offline-export.json");
+  await download.saveAs(observationPath("echo-recording-offline-export.json"));
   const exported = prepareImport(
-    await readFile("/tmp/echo-recording-offline-export.json", "utf8"),
+    await readFile(
+      observationPath("echo-recording-offline-export.json"),
+      "utf8",
+    ),
   ).profile;
   assert.deepEqual(exported, prepareImport(JSON.stringify(saved)).profile);
   await page.getByRole("button", { name: "設定を閉じる" }).click();
@@ -199,7 +208,7 @@ try {
   assert.deepEqual(JSON.parse(reloaded.before.save), saved);
   assert.deepEqual(errors, []);
   await writeFile(
-    "/tmp/echo-recording-offline.json",
+    observationPath("echo-recording-offline.json"),
     JSON.stringify(
       {
         scope:
@@ -235,14 +244,14 @@ try {
   );
 } catch (error) {
   await writeFile(
-    "/tmp/echo-recording-offline-failure.json",
+    observationPath("echo-recording-offline-failure.json"),
     JSON.stringify({ error: String(error), errors }, null, 2) + "\n",
   );
   await page
-    .screenshot({ path: "/tmp/echo-recording-offline-failure.png" })
+    .screenshot({ path: observationPath("echo-recording-offline-failure.png") })
     .catch(() => {});
   await context.tracing
-    .stop({ path: "/tmp/echo-recording-offline-failure-trace.zip" })
+    .stop({ path: observationPath("echo-recording-offline-failure-trace.zip") })
     .catch(() => {});
   throw error;
 } finally {

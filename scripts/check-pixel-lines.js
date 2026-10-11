@@ -1,13 +1,21 @@
+import { developmentURL } from "./browser-url.js";
+import {
+  observationDirectory,
+  observationInputPath,
+} from "./observation-files.js";
 import { chromium, firefox, webkit } from "@playwright/test";
 import assert from "node:assert/strict";
 import { readFile, writeFile } from "node:fs/promises";
 
 const baseline = process.argv.includes("--baseline");
-const destination = ".mdxr/20261007195700-echo-loom/assets";
+const destination = observationDirectory;
 const reference = baseline
   ? null
   : JSON.parse(
-      await readFile(`${destination}/pixel-lines-before.json`, "utf8"),
+      await readFile(
+        await observationInputPath(`pixel-lines-before.json`),
+        "utf8",
+      ),
     );
 const report = {
   scope:
@@ -20,7 +28,7 @@ for (const [name, type] of Object.entries({ chromium, firefox, webkit })) {
     const page = await browser.newPage();
     const errors = [];
     page.on("pageerror", (e) => errors.push(e.message));
-    await page.goto("http://127.0.0.1:5173/");
+    await page.goto(developmentURL);
     const cases = await page.evaluate(async () => {
       const { pixelLine } = await import("/src/art.js");
       const cases = [];

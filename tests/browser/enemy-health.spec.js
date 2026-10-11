@@ -1,9 +1,9 @@
+import { artifacts as assets } from "./artifacts.js";
 import { test, expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { SAVE_KEY } from "../../src/save.js";
 
-const assets = ".mdxr/20261007195700-echo-loom/assets";
 const sha = (bytes) => createHash("sha256").update(bytes).digest("hex");
 
 async function depart(page) {

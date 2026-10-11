@@ -1,3 +1,8 @@
+import { developmentURL } from "./browser-url.js";
+import {
+  observationDirectory,
+  observationInputPath,
+} from "./observation-files.js";
 import { chromium } from "@playwright/test";
 import { readFile, writeFile } from "node:fs/promises";
 import assert from "node:assert/strict";
@@ -5,13 +10,13 @@ import { createRun } from "../src/game.js";
 import { UPGRADES } from "../src/content.js";
 import { freshProfile, SAVE_KEY } from "../src/save.js";
 
-const destination = ".mdxr/20261007195700-echo-loom/assets";
+const destination = observationDirectory;
 const sources = Object.fromEntries(
   await Promise.all(
     ["before", "prototype"].map(async (variant) => [
       variant,
       await readFile(
-        `${destination}/renderer-presentation-${variant}.js`,
+        await observationInputPath(`renderer-presentation-${variant}.js`),
         "utf8",
       ),
     ]),
@@ -55,7 +60,7 @@ try {
   await cdp.send("Emulation.setCPUThrottlingRate", { rate: 4 });
   for (const [block, current] of report.order.entries()) {
     variant = current;
-    await page.goto("http://127.0.0.1:5173/");
+    await page.goto(developmentURL);
     await page.locator('[data-action="continue"]').click();
     await page.bringToFront();
     await page.evaluate(() => {

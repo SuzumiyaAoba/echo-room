@@ -1,11 +1,12 @@
+import { observationDirectory } from "./observation-files.js";
 import { writeFile } from "node:fs/promises";
 import assert from "node:assert/strict";
-import { simulate as before } from "../.mdxr/20261007195700-echo-loom/assets/bell-baseline/scripts/simulate.js";
-import { Game as BeforeGame } from "../.mdxr/20261007195700-echo-loom/assets/bell-baseline/src/game.js";
+import { simulate as before } from "../tests/fixtures/bell-before/simulate.js";
+import { Game as BeforeGame } from "../tests/fixtures/bell-before/game.js";
 import { simulate as after } from "./simulate.js";
 import { Game } from "../src/game.js";
 import { WEAPONS } from "../src/content.js";
-const destination = ".mdxr/20261007195700-echo-loom/assets";
+const destination = observationDirectory;
 const phase = process.argv[2] || "before";
 assert.ok(["before", "paired"].includes(phase));
 function observe(GameClass) {

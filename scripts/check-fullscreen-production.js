@@ -1,3 +1,5 @@
+import { productionURL } from "./browser-url.js";
+import { observationPath } from "./observation-files.js";
 import { chromium } from "@playwright/test";
 import assert from "node:assert/strict";
 import { readFile, writeFile } from "node:fs/promises";
@@ -64,7 +66,7 @@ async function pausedFor350ms() {
   return { milliseconds: 350, before, after, exact: true };
 }
 try {
-  await page.goto("http://127.0.0.1:4173/");
+  await page.goto(productionURL);
   await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
   const cache = await page.evaluate(async () => {
     const names = await caches.keys();
@@ -127,7 +129,9 @@ try {
     );
     layouts.push(layout);
     if (viewport.width === 360)
-      await page.screenshot({ path: "/tmp/echo-fullscreen-offline-home.png" });
+      await page.screenshot({
+        path: observationPath("echo-fullscreen-offline-home.png"),
+      });
   }
   await page.setViewportSize({ width: 1200, height: 850 });
   await page.getByRole("button", { name: "灯りをともす" }).click();
@@ -144,7 +148,9 @@ try {
   await full(true);
   const entered = await pausedFor350ms();
   assert.deepEqual(entered.before, before.before);
-  await page.screenshot({ path: "/tmp/echo-fullscreen-offline-pause.png" });
+  await page.screenshot({
+    path: observationPath("echo-fullscreen-offline-pause.png"),
+  });
   await page.getByRole("button", { name: "航路へ戻る", exact: true }).click();
   await page.keyboard.down("KeyD");
   await page.keyboard.down("KeyJ");
@@ -170,9 +176,12 @@ try {
     .getByRole("button", { name: "記録を書き出す", exact: true })
     .click();
   const download = await downloadPromise;
-  await download.saveAs("/tmp/echo-fullscreen-offline-export.json");
+  await download.saveAs(observationPath("echo-fullscreen-offline-export.json"));
   const exported = prepareImport(
-    await readFile("/tmp/echo-fullscreen-offline-export.json", "utf8"),
+    await readFile(
+      observationPath("echo-fullscreen-offline-export.json"),
+      "utf8",
+    ),
   ).profile;
   // Import validation expands absent upgrade ranks to zero. Compare both
   // records through the same public import validation, preserving every field.
@@ -205,7 +214,7 @@ try {
     errors,
   };
   await writeFile(
-    "/tmp/echo-fullscreen-offline.json",
+    observationPath("echo-fullscreen-offline.json"),
     JSON.stringify(report, null, 2) + "\n",
   );
   console.log(

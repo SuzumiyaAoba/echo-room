@@ -1,9 +1,12 @@
+import { fixturePath } from "./artifacts.js";
+import { gameURL } from "./server-url.js";
+import { artifacts as assets } from "./artifacts.js";
 import { test, expect } from "@playwright/test";
 import { writeFile, readFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { SAVE_KEY, prepareImport } from "../../src/save.js";
 import { catalogUpgrades } from "../../src/content.js";
-const assets = ".mdxr/20261007195700-echo-loom/assets";
+
 const sha = (b) => createHash("sha256").update(b).digest("hex");
 
 async function depart(page) {
@@ -419,13 +422,13 @@ test("新しい旅の版を公開ファイルと再開で保持し、獲得し�
   const context = await page.context().browser().newContext();
   try {
     const target = await context.newPage();
-    await target.goto("http://127.0.0.1:5173/");
+    await target.goto(gameURL);
     expect(await saved(target)).toBeNull();
     await target.getByRole("button", { name: "設定", exact: true }).click();
     await target.locator("#save-file").setInputFiles(path);
     await target.locator('[data-action="importrecord"]').click();
     expect(await saved(target)).toEqual(portable);
-    const oldFile = `${assets}/encounter-entry-journey-weaving-1.json`,
+    const oldFile = fixturePath("encounter-entry-journey-weaving-1.json"),
       oldBytes = await readFile(oldFile),
       old = prepareImport(oldBytes.toString()).profile;
     expect(old.run.chargeVersion).toBeUndefined();

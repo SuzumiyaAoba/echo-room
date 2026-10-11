@@ -1,10 +1,15 @@
+import { developmentURL } from "./browser-url.js";
+import {
+  observationDirectory,
+  observationInputPath,
+} from "./observation-files.js";
 import { chromium, firefox, webkit } from "@playwright/test";
 import { readFile, writeFile } from "node:fs/promises";
 import assert from "node:assert/strict";
 
 const baseline = process.argv[2] === "baseline";
 const spritesOnly = process.argv.includes("sprites");
-const destination = ".mdxr/20261007195700-echo-loom/assets";
+const destination = observationDirectory;
 const report = {
   scope: spritesOnly
     ? "Native Canvas actor pixels for direction, walking, palette and fractional scale, compared with the pre-cache actor baseline. Room scenery intentionally changed and is reviewed separately."
@@ -14,13 +19,16 @@ const report = {
 const reference = baseline
   ? null
   : JSON.parse(
-      await readFile(`${destination}/render-before-cache.json`, "utf8"),
+      await readFile(
+        await observationInputPath(`render-before-cache.json`),
+        "utf8",
+      ),
     );
 for (const [name, type] of Object.entries({ chromium, firefox, webkit })) {
   const browser = await type.launch({ headless: true });
   try {
     const page = await browser.newPage();
-    await page.goto("http://127.0.0.1:5173/");
+    await page.goto(developmentURL);
     report.browsers[name] = await page.evaluate(async (spritesOnly) => {
       const { sprite } = await import("/src/art.js"),
         { Renderer } = await import("/src/render.js"),

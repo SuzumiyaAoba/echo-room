@@ -1,3 +1,8 @@
+import { productionURL } from "./browser-url.js";
+import {
+  observationDirectory,
+  observationInputPath,
+} from "./observation-files.js";
 import { chromium } from "@playwright/test";
 import assert from "node:assert/strict";
 import { readFile, writeFile } from "node:fs/promises";
@@ -5,9 +10,9 @@ import { createHash } from "node:crypto";
 import { SAVE_KEY, prepareImport } from "../src/save.js";
 import { normalizeReturnRecord, returnReadout } from "../src/return-record.js";
 
-const destination = ".mdxr/20261007195700-echo-loom/assets";
+const destination = observationDirectory;
 const sourceArtifact = "memory-ward-arrival-bell-weaving.json";
-const bytes = await readFile(`${destination}/${sourceArtifact}`);
+const bytes = await readFile(await observationInputPath(`${sourceArtifact}`));
 const initial = prepareImport(bytes.toString()).profile;
 assert.equal(initial.run.stage, 23);
 assert.equal(initial.run.checkpoint, "entry");
@@ -74,7 +79,7 @@ try {
       }
     };
   });
-  await page.goto("http://127.0.0.1:4173/");
+  await page.goto(productionURL);
   await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
   await context.setOffline(true);
   await page.reload();

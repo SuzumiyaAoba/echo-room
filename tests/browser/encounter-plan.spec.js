@@ -1,3 +1,4 @@
+import { artifacts as assets } from "./artifacts.js";
 import { test, expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 import { createRun, forecastRoom, Game } from "../../src/game.js";
@@ -6,8 +7,6 @@ import {
   Game as Before,
 } from "../fixtures/tactics-before/game.js";
 import { freshProfile, exportProfile, SAVE_KEY } from "../../src/save.js";
-
-const assets = ".mdxr/20261007195700-echo-loom/assets";
 
 async function importFork(page, next, legacy = false) {
   const profile = freshProfile();

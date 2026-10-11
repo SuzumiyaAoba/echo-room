@@ -1,3 +1,5 @@
+import { fixturePath } from "./artifacts.js";
+import { artifacts as assets } from "./artifacts.js";
 import { test, expect } from "@playwright/test";
 import { readFile, writeFile } from "node:fs/promises";
 import { createRun } from "../../src/game.js";
@@ -5,7 +7,7 @@ import { ENEMIES } from "../../src/content.js";
 import { freshProfile, SAVE_KEY, prepareImport } from "../../src/save.js";
 import { makeReturnRecord } from "../../src/return-record.js";
 import { lastHitReadout } from "../../src/last-impact.js";
-const assets = ".mdxr/20261007195700-echo-loom/assets";
+
 const engine = (n) => (n === "webkit" ? "webkit-last-impact" : n);
 const proof = (kind, n, data) =>
   writeFile(
@@ -260,7 +262,7 @@ test("旧記録・不正な文章・実ファイルの移行と取り込みの�
   page.on("pageerror", (e) => errors.push(e.message));
   await page.goto("/");
   const baseline = JSON.parse(
-      await readFile(`${assets}/lesson-before.json`, "utf8"),
+      await readFile(fixturePath("lesson-before.json"), "utf8"),
     ),
     old = baseline.profile;
   await importRecord(page, old);

@@ -1,3 +1,4 @@
+import { artifacts as artifact } from "./artifacts.js";
 import { test, expect } from "@playwright/test";
 import { createRun } from "../../src/game.js";
 import { freshProfile, SAVE_KEY } from "../../src/save.js";
@@ -15,7 +16,6 @@ async function load(page, profile) {
 }
 const saved = (page) =>
   page.evaluate((key) => JSON.parse(localStorage.getItem(key)), SAVE_KEY);
-const artifact = ".mdxr/20261007195700-echo-loom/assets";
 
 test("物語の選択が保存され、倒れて帰還しても街の修復と最初の織片が残る", async ({
   page,

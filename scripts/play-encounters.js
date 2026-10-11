@@ -1,3 +1,5 @@
+import { developmentOrigin, developmentURL } from "./browser-url.js";
+import { observationDirectory } from "./observation-files.js";
 import { chromium } from "@playwright/test";
 import { createRun } from "../src/game.js";
 import { freshProfile, SAVE_KEY } from "../src/save.js";
@@ -6,7 +8,7 @@ import { writeFileSync } from "node:fs";
 const browser = await chromium.launch({ headless: true });
 const errors = [],
   observations = [];
-const artifact = ".mdxr/20261007195700-echo-loom/assets";
+const artifact = observationDirectory;
 const tag = process.argv.find((arg) => arg.startsWith("--tag="))?.slice(6);
 if (tag && !/^[a-z0-9-]+$/.test(tag))
   throw new Error("Expected a simple artifact tag");
@@ -38,7 +40,7 @@ for (const stage of stages) {
       cookies: [],
       origins: [
         {
-          origin: "http://127.0.0.1:5173",
+          origin: developmentOrigin,
           localStorage: [{ name: SAVE_KEY, value: JSON.stringify(profile) }],
         },
       ],
@@ -46,7 +48,7 @@ for (const stage of stages) {
   });
   const page = await context.newPage();
   page.on("pageerror", (e) => errors.push(e.message));
-  await page.goto("http://127.0.0.1:5173");
+  await page.goto(developmentURL);
   await page.locator('[data-action="continue"]').click();
   await page.bringToFront();
   await page.keyboard.down("KeyJ");

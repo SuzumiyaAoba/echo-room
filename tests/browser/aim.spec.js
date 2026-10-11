@@ -1,8 +1,9 @@
+import { gameURL } from "./server-url.js";
+import { artifacts as assets } from "./artifacts.js";
 import { test, expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 import { freshProfile, SAVE_KEY } from "../../src/save.js";
 
-const assets = ".mdxr/20261007195700-echo-loom/assets";
 const proof = (name, engine, result) =>
   writeFile(
     `${assets}/aim-${name}-${engine}.json`,
@@ -227,7 +228,7 @@ async function fixture(page) {
   await page.evaluate(async () => {
     const [{ Input }, { Input: Before }] = await Promise.all([
       import("/src/input.js"),
-      import("/.mdxr/20261007195700-echo-loom/assets/aim-baseline-input.mjs"),
+      import("/tests/fixtures/reference/aim-baseline-input.mjs"),
     ]);
     const canvas = document.querySelector("canvas");
     const current = new Input(canvas, () => current.clear());
@@ -441,7 +442,7 @@ test("スティックが古いマウス照準を解除し、三画面の実際�
     });
     touchContext = await browser.newContext({
       hasTouch: true,
-      baseURL: "http://127.0.0.1:5173",
+      baseURL: gameURL,
       viewport: { width: 1200, height: 850 },
     });
     page = await touchContext.newPage();
@@ -528,9 +529,7 @@ test("旧描画と照合し、照準だけの小さな画素範囲以外とゲ�
       { aimCue },
     ] = await Promise.all([
       import("/src/render.js"),
-      import(
-        "/.mdxr/20261007195700-echo-loom/assets/pad-predecessor-render.mjs"
-      ),
+      import("/tests/fixtures/reference/pad-predecessor-render.mjs"),
       import("/src/game.js"),
       import("/src/aim-feedback.js"),
     ]);

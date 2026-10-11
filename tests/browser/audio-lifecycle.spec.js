@@ -1,7 +1,8 @@
+import { artifacts as assets } from "./artifacts.js";
 import { test, expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 test.use({ hasTouch: true });
-const assets = ".mdxr/20261007195700-echo-loom/assets";
+
 const sample = (page) =>
   page.evaluate(() => {
     const a = window.__ECHO_LOOM__.audio();

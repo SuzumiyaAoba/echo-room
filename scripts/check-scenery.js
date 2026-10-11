@@ -1,3 +1,8 @@
+import { developmentURL } from "./browser-url.js";
+import {
+  observationDirectory,
+  observationInputPath,
+} from "./observation-files.js";
 import { chromium, firefox, webkit } from "@playwright/test";
 import assert from "node:assert/strict";
 import { readFile, writeFile } from "node:fs/promises";
@@ -8,7 +13,7 @@ const legacyLines = process.argv.includes("--legacy-lines");
 const tag = process.argv.find((arg) => arg.startsWith("--tag="))?.slice(6);
 if (tag && !/^[a-z0-9-]+$/.test(tag))
   throw new Error("Expected a simple artifact tag");
-const destination = ".mdxr/20261007195700-echo-loom/assets";
+const destination = observationDirectory;
 const phase = tag || (before ? "before" : "after");
 const compare = process.argv
   .find((arg) => arg.startsWith("--compare="))
@@ -16,7 +21,12 @@ const compare = process.argv
 if (compare && !/^[a-z0-9-]+$/.test(compare))
   throw new Error("Expected a simple comparison tag");
 const reference = compare
-  ? JSON.parse(await readFile(`${destination}/scenery-${compare}.json`, "utf8"))
+  ? JSON.parse(
+      await readFile(
+        await observationInputPath(`scenery-${compare}.json`),
+        "utf8",
+      ),
+    )
   : null;
 const report = {
   scope:
@@ -36,11 +46,13 @@ for (const [name, type] of Object.entries(
     page.on("pageerror", (e) => errors.push(e.message));
     if (legacyLines) {
       const source = withLegacyPixelLine(await readFile("src/art.js", "utf8"));
-      await page.route("http://127.0.0.1:5173/src/art.js*", (route) =>
-        route.fulfill({ contentType: "text/javascript", body: source }),
+      await page.route(
+        new URL("src/art.js", developmentURL).href + "*",
+        (route) =>
+          route.fulfill({ contentType: "text/javascript", body: source }),
       );
     }
-    await page.goto("http://127.0.0.1:5173/");
+    await page.goto(developmentURL);
     const cases = [];
     for (const stage of [0, 8, 16, 1, 9, 17, 7, 15, 23]) {
       const result = await page.evaluate(async (stage) => {

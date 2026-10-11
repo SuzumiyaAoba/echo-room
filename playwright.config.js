@@ -1,5 +1,6 @@
 import { readdirSync } from "node:fs";
 import { defineConfig } from "@playwright/test";
+import { gamePort, gameURL } from "./tests/browser/server-url.js";
 export default defineConfig({
   testDir: "./tests/browser",
   timeout: 90000,
@@ -7,7 +8,7 @@ export default defineConfig({
   workers: 1,
   retries: 0,
   use: {
-    baseURL: "http://127.0.0.1:5173",
+    baseURL: gameURL,
     viewport: { width: 1200, height: 850 },
     trace: "retain-on-failure",
   },
@@ -27,8 +28,8 @@ export default defineConfig({
       })),
   ],
   webServer: {
-    command: "npm run dev -- --port 5173",
-    url: "http://127.0.0.1:5173",
+    command: `npm run dev -- --port ${gamePort} --strictPort`,
+    url: gameURL,
     reuseExistingServer: true,
     timeout: 15000,
   },

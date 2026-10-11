@@ -1,10 +1,12 @@
+import { productionOrigin, productionURL } from "./browser-url.js";
+import { observationDirectory } from "./observation-files.js";
 import { chromium } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 import assert from "node:assert/strict";
 import { SAVE_KEY } from "../src/save.js";
 import { weavingChoiceProfile } from "../tests/fixtures/upgrade-preview.js";
 
-const destination = ".mdxr/20261007195700-echo-loom/assets";
+const destination = observationDirectory;
 const report = {
   scope:
     "Previous production build before the upgrade-effect comparison UI. Actual public continue screen from an explicitly prepared saved-reward fixture, not an organically earned run. Read-only display observations, desktop and 640x360 viewport.",
@@ -22,7 +24,7 @@ try {
         cookies: [],
         origins: [
           {
-            origin: "http://127.0.0.1:4173",
+            origin: productionOrigin,
             localStorage: [
               { name: SAVE_KEY, value: JSON.stringify(weavingChoiceProfile()) },
             ],
@@ -34,7 +36,7 @@ try {
       const page = await context.newPage(),
         errors = [];
       page.on("pageerror", (e) => errors.push(e.message));
-      await page.goto("http://127.0.0.1:4173/");
+      await page.goto(productionURL);
       await page.locator('[data-action="continue"]').click();
       const ids = await page
         .locator('[data-action="upgrade"]')

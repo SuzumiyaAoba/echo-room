@@ -1,8 +1,10 @@
+import { artifactPath } from "./artifacts.js";
 import { test, expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 import { freshProfile, SAVE_KEY } from "../../src/save.js";
 
-const resultPath = (name, engine) => `/tmp/echo-fullscreen-${name}-${engine}`;
+const resultPath = (name, engine) =>
+  artifactPath(`echo-fullscreen-${name}-${engine}`);
 async function fresh(page) {
   const profile = freshProfile();
   profile.attempts = 2;

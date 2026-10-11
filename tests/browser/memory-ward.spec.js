@@ -1,3 +1,4 @@
+import { artifactPath } from "./artifacts.js";
 import { test, expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 import { createRun } from "../../src/game.js";
@@ -118,7 +119,7 @@ test("Qの光糸を保って盾をほどき、進捗と開いた時間は一時�
   expect(await snapshot(page)).toEqual(opened);
   await page.screenshot({ path: testInfo.outputPath("memory-ward-open.png") });
   await writeFile(
-    `/tmp/echo-ability-memory-weave-${browserName}.json`,
+    artifactPath(`echo-ability-memory-weave-${browserName}.json`),
     JSON.stringify(
       {
         scope:
@@ -238,7 +239,7 @@ test("QとRの解放で盾を開いても、予告した攻撃名・残り時間
   expect(result.firedHud.model.plan).toEqual(before.plan);
   expect(result.firedHud.model.open).toBeGreaterThan(0);
   await writeFile(
-    `/tmp/echo-ability-memory-ward-${browserName}.json`,
+    artifactPath(`echo-ability-memory-ward-${browserName}.json`),
     JSON.stringify(
       {
         scope:

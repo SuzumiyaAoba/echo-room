@@ -1,8 +1,10 @@
+import { fixturePath } from "./artifacts.js";
+import { artifacts as assets } from "./artifacts.js";
 import { test, expect } from "@playwright/test";
 import { readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { SAVE_KEY, prepareImport } from "../../src/save.js";
-const assets = ".mdxr/20261007195700-echo-loom/assets";
+
 const source = "encounter-entry-shell-voyage-9.json";
 const sizes = [
   { width: 1200, height: 850 },
@@ -23,7 +25,7 @@ const freeze = (page) =>
     SAVE_KEY,
   );
 async function start(page) {
-  const bytes = await readFile(`${assets}/${source}`),
+  const bytes = await readFile(fixturePath(source)),
     profile = prepareImport(bytes.toString()).profile;
   await page.goto("/");
   await page.getByRole("button", { name: "設定", exact: true }).click();
@@ -269,7 +271,10 @@ test("停止した本物の世界で通知二つ・HUD再構築・補助欄・�
           .querySelectorAll(".notice-feedback")
           .forEach((n) => n.remove());
         const ui = document.querySelector("#interface");
-        ui.innerHTML = ui.innerHTML;
+        // Rebuild the HUD as a screen transition would, replacing every node.
+        ui.replaceChildren(
+          ...[...ui.children].map((node) => node.cloneNode(true)),
+        );
       });
       await page.waitForTimeout(100);
       const rebuilt = await layout(page);
